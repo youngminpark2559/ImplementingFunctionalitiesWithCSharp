@@ -41,6 +41,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numberOfWords = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDownload
@@ -78,6 +80,7 @@
             this.textURL.Name = "textURL";
             this.textURL.Size = new System.Drawing.Size(567, 21);
             this.textURL.TabIndex = 3;
+            this.textURL.Text = "http://www.gutenberg.org/files/98/98-8.txt";
             // 
             // label1
             // 
@@ -121,8 +124,8 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(250, 36);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Put a number\r\nand you can find frequently used words\r\ncomposed of number of chara" +
-    "cters you put";
+            this.label3.Text = "Put a number\r\nand you can get frequently used words\r\ncomposed of number of charac" +
+    "ters you put";
             // 
             // numberOfChar
             // 
@@ -130,6 +133,7 @@
             this.numberOfChar.Name = "numberOfChar";
             this.numberOfChar.Size = new System.Drawing.Size(97, 21);
             this.numberOfChar.TabIndex = 9;
+            this.numberOfChar.Text = "5";
             // 
             // label4
             // 
@@ -147,6 +151,7 @@
             this.numberOfWords.Name = "numberOfWords";
             this.numberOfWords.Size = new System.Drawing.Size(97, 21);
             this.numberOfWords.TabIndex = 11;
+            this.numberOfWords.Text = "10";
             // 
             // label5
             // 
@@ -157,11 +162,30 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Put a number\r\nand you can get units of word\r\nyou put";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(289, 655);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(69, 21);
+            this.textBox1.TabIndex = 13;
+            this.textBox1.Text = "3";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(289, 603);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(256, 24);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Put a number for shortest word\r\nYou put 3 and you get such as \"one\", \"way\".";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 829);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.numberOfWords);
             this.Controls.Add(this.label4);
@@ -197,6 +221,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox numberOfWords;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
     }
 }
 
