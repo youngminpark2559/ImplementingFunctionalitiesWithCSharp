@@ -19,12 +19,12 @@ namespace DataParallelismWithForEach
             InitializeComponent();
         }
 
-        // New Form-level variable.
+        // Field for cancellation
         private CancellationTokenSource cancelToken = new CancellationTokenSource();
 
         private void btnProcessImages_Click(object sender, EventArgs e)
         {
-            // Start a new "task" to process the files.
+            // Start a new "task" to process the files
             Task.Factory.StartNew(() =>
             {
                 ProcessFiles();
@@ -33,14 +33,14 @@ namespace DataParallelismWithForEach
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // This will be used to tell all the worker threads to stop!
+            // This will be used to tell all the worker threads to stop
             cancelToken.Cancel();
         }
 
 
 
 
-
+        // Upside down images which have jpg extension 
         private void ProcessFiles()
         {
             // Use ParallelOptions instance to store the CancellationToken.
@@ -56,7 +56,7 @@ namespace DataParallelismWithForEach
             Directory.CreateDirectory(newDir);
             try
             {
-                // Process the image data in a parallel manner!
+                // Process the image data in a parallel manner
                 Parallel.ForEach(files, parOpts, currentFile =>
                 {
                     parOpts.CancellationToken.ThrowIfCancellationRequested();
