@@ -30,33 +30,45 @@ namespace AnalyzingTextTool
                 theEBook = eArgs.Result;
                 txtBook.Text = theEBook;
             };
-            // The Project Gutenberg EBook of A Tale of Two Cities, by Charles Dickens
+            
             wc.DownloadStringAsync(new Uri(textURL.Text));
         }
 
         private void btnGetStats_Click(object sender, EventArgs e)
         {
-            // Get the words from the e-book.
-            string[] words = theEBook.Split(new char[]
-              { ' ', '\u000A', ',', '.', ';', ':', '-', '?', '/' },
+            // Get the words from the text.
+            string[] words = theEBook.Split(
+              new char[] { ' ', '\u000A', ',', '.', ';', ':', '-', '?', '/' },
               StringSplitOptions.RemoveEmptyEntries);
+            string[] tenMostCommon = null;
+            string longestWord = string.Empty;
 
-            // Now, find the ten most common words.
-            string[] tenMostCommon = FindTenMostCommon(words);
-            // Get the longest word.
-            string longestWord = FindLongestWord(words);
+            // Process the task by using all available CPUs on the host machine
+            Parallel.Invoke(
+                () =>
+                {
+                    // Now, find the ten most common words.
+                    tenMostCommon = FindTenMostCommon(words);
+                },
+                () =>
+                {
+                    // Get the longest word.
+                    longestWord = FindLongestWord(words);
+                });
 
             // Now that all tasks are complete, build a string to show all
             // stats in a message box.
             StringBuilder bookStats = new StringBuilder("Ten Most Common Words are:\n");
+            
             foreach (string s in tenMostCommon)
             {
                 bookStats.AppendLine(s);
             }
 
-            bookStats.AppendFormat("Longest word is: {0}", longestWord);
+            bookStats.AppendFormat("\n\nLongest word is: {0}", longestWord);
             bookStats.AppendLine();
             //MessageBox.Show(bookStats.ToString(), "Book info");
+            f2.Show();
             f2.textBoxList.Text = bookStats.ToString();
             f2.textBoxList.Show();
 

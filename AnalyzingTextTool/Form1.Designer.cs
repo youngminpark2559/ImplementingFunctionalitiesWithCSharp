@@ -55,7 +55,7 @@
             // 
             // btnGetStats
             // 
-            this.btnGetStats.Location = new System.Drawing.Point(12, 907);
+            this.btnGetStats.Location = new System.Drawing.Point(12, 789);
             this.btnGetStats.Name = "btnGetStats";
             this.btnGetStats.Size = new System.Drawing.Size(75, 23);
             this.btnGetStats.TabIndex = 1;
@@ -161,7 +161,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 942);
+            this.ClientSize = new System.Drawing.Size(601, 829);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.numberOfWords);
             this.Controls.Add(this.label4);
