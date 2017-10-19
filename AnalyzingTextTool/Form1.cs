@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -24,6 +25,9 @@ namespace AnalyzingTextTool
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
+
+            if(!String.IsNullOrEmpty(textURL.Text))
+            { 
             WebClient wc = new WebClient();
             wc.DownloadStringCompleted += (s, eArgs) =>
             {
@@ -32,6 +36,17 @@ namespace AnalyzingTextTool
             };
             
             wc.DownloadStringAsync(new Uri(textURL.Text));
+            }
+            else if (!String.IsNullOrEmpty(textBox2.Text))
+            {
+                //txtBook.Text = (new System.IO.StreamReader(textBox2.Text)).ToString();
+                string[] stringArray = File.ReadAllLines(textBox2.Text);
+
+                txtBook.Text = string.Join("", stringArray);
+                theEBook = txtBook.Text;
+
+            }
+
         }
 
         private void btnGetStats_Click(object sender, EventArgs e)
@@ -85,7 +100,16 @@ namespace AnalyzingTextTool
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            
 
+            OpenFileDialog fdl = new OpenFileDialog();
+            DialogResult dr = fdl.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                textBox2.Text = fdl.FileName;
+
+            }
         }
 
 
