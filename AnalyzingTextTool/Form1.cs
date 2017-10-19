@@ -42,6 +42,7 @@ namespace AnalyzingTextTool
               StringSplitOptions.RemoveEmptyEntries);
             string[] tenMostCommon = null;
             string longestWord = string.Empty;
+            string shortestWord = string.Empty;
 
             // Process the task by using all available CPUs on the host machine
             Parallel.Invoke(
@@ -54,20 +55,28 @@ namespace AnalyzingTextTool
                 {
                     // Get the longest word.
                     longestWord = FindLongestWord(words);
-                });
+                },
+                () =>
+                {
+                    // Get the shortest word.
+                    shortestWord = FindShortestWord(words);
+                }
+                );
 
             // Now that all tasks are complete, build a string to show all
             // stats in a message box.
             StringBuilder bookStats = new StringBuilder("Ten Most Common Words are:\n");
-            
+            bookStats.AppendLine();
             foreach (string s in tenMostCommon)
             {
                 bookStats.AppendLine(s);
             }
-
-            bookStats.AppendFormat("\n\nLongest word is: {0}", longestWord);
             bookStats.AppendLine();
-            //MessageBox.Show(bookStats.ToString(), "Book info");
+            bookStats.AppendFormat("Longest word is: {0}", longestWord);
+            bookStats.AppendLine();
+            bookStats.AppendLine();
+            bookStats.AppendFormat("Shortest word is: {0}", shortestWord);
+            bookStats.AppendLine();
             f2.Show();
             f2.textBoxList.Text = bookStats.ToString();
             f2.textBoxList.Show();
@@ -96,6 +105,13 @@ namespace AnalyzingTextTool
                     orderby w.Length descending
                     select w).FirstOrDefault();
         }
+        private string FindShortestWord(string[] words)
+        {
+            return (from w in words
+                    orderby w.Length ascending
+                    select w).FirstOrDefault();
+        }
+
 
     }
 }
