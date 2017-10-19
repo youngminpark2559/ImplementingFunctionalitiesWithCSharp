@@ -47,19 +47,19 @@
             // 
             // btnDownload
             // 
-            this.btnDownload.Location = new System.Drawing.Point(12, 536);
+            this.btnDownload.Location = new System.Drawing.Point(12, 539);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(190, 23);
+            this.btnDownload.Size = new System.Drawing.Size(157, 23);
             this.btnDownload.TabIndex = 0;
-            this.btnDownload.Text = "Get text and show on above textbox";
+            this.btnDownload.Text = "Get text on above textbox";
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // btnGetStats
             // 
-            this.btnGetStats.Location = new System.Drawing.Point(12, 789);
+            this.btnGetStats.Location = new System.Drawing.Point(12, 794);
             this.btnGetStats.Name = "btnGetStats";
-            this.btnGetStats.Size = new System.Drawing.Size(75, 23);
+            this.btnGetStats.Size = new System.Drawing.Size(157, 23);
             this.btnGetStats.TabIndex = 1;
             this.btnGetStats.Text = "Analyze";
             this.btnGetStats.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             // 
             this.numberOfChar.Location = new System.Drawing.Point(12, 655);
             this.numberOfChar.Name = "numberOfChar";
-            this.numberOfChar.Size = new System.Drawing.Size(97, 21);
+            this.numberOfChar.Size = new System.Drawing.Size(48, 21);
             this.numberOfChar.TabIndex = 9;
             this.numberOfChar.Text = "5";
             // 
@@ -149,7 +149,7 @@
             // 
             this.numberOfWords.Location = new System.Drawing.Point(12, 741);
             this.numberOfWords.Name = "numberOfWords";
-            this.numberOfWords.Size = new System.Drawing.Size(97, 21);
+            this.numberOfWords.Size = new System.Drawing.Size(48, 21);
             this.numberOfWords.TabIndex = 11;
             this.numberOfWords.Text = "10";
             // 
@@ -164,9 +164,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(289, 655);
+            this.textBox1.Location = new System.Drawing.Point(291, 655);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(69, 21);
+            this.textBox1.Size = new System.Drawing.Size(48, 21);
             this.textBox1.TabIndex = 13;
             this.textBox1.Text = "3";
             // 
@@ -175,9 +175,10 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(289, 603);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(256, 24);
+            this.label6.Size = new System.Drawing.Size(252, 36);
             this.label6.TabIndex = 14;
-            this.label6.Text = "Put a number for shortest word\r\nYou put 3 and you get such as \"one\", \"way\".";
+            this.label6.Text = "Put a number for matching words\r\nYou put 3 and you get such as \"one\", \"way\"\r\nin o" +
+    "rder of frequency descending ";
             // 
             // Form1
             // 

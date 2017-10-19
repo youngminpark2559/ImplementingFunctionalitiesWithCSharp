@@ -90,7 +90,7 @@ namespace AnalyzingTextTool
             bookStats.AppendFormat("Longest word is: {0}", longestWord);
             bookStats.AppendLine();
             bookStats.AppendLine();
-            bookStats.AppendFormat("Short words are:");
+            bookStats.AppendFormat("Most common words composed of\n number of character you put are:");
             bookStats.AppendLine();
             foreach (string s in shortestWord)
             {
