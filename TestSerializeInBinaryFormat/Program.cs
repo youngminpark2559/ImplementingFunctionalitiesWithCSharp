@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -71,6 +72,8 @@ namespace TestSerializeInBinaryFormat
             // Pass in the object-graph and CarData.dat will be created in the location of Bin\Debug\
             SaveAsBinaryFormat(jbc, "CarData.dat");
             LoadFromBinaryFile("CarData.dat");
+            SaveAsSoapFormat(jbc, "CarData.soap");
+            LoadFromSoapFile("CarData.soap");
             Console.ReadLine();
         }
 
@@ -90,7 +93,7 @@ namespace TestSerializeInBinaryFormat
             {
                 binFormat.Serialize(fStream, objGraph);
             }
-            Console.WriteLine("=> Saved car in binary format!\n");
+            Console.WriteLine("=> Saved car in binary format!");
         }
 
         static void LoadFromBinaryFile(string fileName)
@@ -105,13 +108,54 @@ namespace TestSerializeInBinaryFormat
                 JamesBondCar carFromDisk =
                   (JamesBondCar)binFormat.Deserialize(fStream);
                 //After deserializing binary data and then type casting object type to specific type explicitly, I can use object, extracting canFly property data
-                Console.WriteLine("Can this car fly? : {0}\n", carFromDisk.canFly);
-                Console.WriteLine("stationPresets of Radio object");
+                Console.WriteLine("1. Can this car fly? : {0}", carFromDisk.canFly);
+                Console.WriteLine("2. stationPresets of Radio object");
                 foreach (var stationPresets in carFromDisk.theRadio.stationPresets)
                 {
                     Console.WriteLine(stationPresets);
                 }
             }
         }
+
+
+        // SOAP format uses XML format but it doesn't cause object-graph infinite loop in .soap file
+        // cause it uses #ref tokens to mark the object references
+        static void SaveAsSoapFormat(object objGraph, string fileName)
+        {
+            // Save object to a file named CarData.soap in SOAP format.
+            // First, Get SoapFormatter object
+            SoapFormatter soapFormat = new SoapFormatter();
+
+            // Second, create a file which will be contained by SOAP format data
+            // in Bin\Debug
+            using (Stream fStream = new FileStream(fileName,
+              FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                // Serialize object-graph in SOAP format and save it to the physical file
+                soapFormat.Serialize(fStream, objGraph);
+            }
+            Console.WriteLine("\n=> Saved car in SOAP format!");
+        }
+
+        static void LoadFromSoapFile(string fileName)
+        {
+            SoapFormatter soapFormat = new SoapFormatter();
+
+            // Read the JamesBondCar from the binary file.
+            // It is stream in byte array(binary type data)
+            using (Stream fStream = File.OpenRead(fileName))
+            {
+                JamesBondCar carFromDisk =(JamesBondCar)soapFormat.Deserialize(fStream);
+                
+                Console.WriteLine("1. Can this car fly? : {0}", carFromDisk.canFly);
+                Console.WriteLine("2. stationPresets of Radio object");
+                foreach (var stationPresets in carFromDisk.theRadio.stationPresets)
+                {
+                    Console.WriteLine(stationPresets);
+                }
+            }
+        }
+
+
     }
 }
