@@ -70,6 +70,7 @@ namespace TestSerializeInBinaryFormat
             // Now save the car to a specific file in a binary format.
             // Pass in the object-graph and CarData.dat will be created in the location of Bin\Debug\
             SaveAsBinaryFormat(jbc, "CarData.dat");
+            LoadFromBinaryFile("CarData.dat");
             Console.ReadLine();
         }
 
@@ -89,7 +90,28 @@ namespace TestSerializeInBinaryFormat
             {
                 binFormat.Serialize(fStream, objGraph);
             }
-            Console.WriteLine("=> Saved car in binary format!");
+            Console.WriteLine("=> Saved car in binary format!\n");
+        }
+
+        static void LoadFromBinaryFile(string fileName)
+        {
+            BinaryFormatter binFormat = new BinaryFormatter();
+
+            // Read the JamesBondCar from the binary file.
+            // It is stream in byte array(binary type data)
+            using (Stream fStream = File.OpenRead(fileName))
+            {
+                //I pass in that data(fStream) into Deserialize method to deserialze that binary data and to reconstruct object-graph which is return in object type so that I should cast object type to specific type that I want to use in explicitly
+                JamesBondCar carFromDisk =
+                  (JamesBondCar)binFormat.Deserialize(fStream);
+                //After deserializing binary data and then type casting object type to specific type explicitly, I can use object, extracting canFly property data
+                Console.WriteLine("Can this car fly? : {0}\n", carFromDisk.canFly);
+                Console.WriteLine("stationPresets of Radio object");
+                foreach (var stationPresets in carFromDisk.theRadio.stationPresets)
+                {
+                    Console.WriteLine(stationPresets);
+                }
+            }
         }
     }
 }
