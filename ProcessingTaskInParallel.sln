@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTaskInParallel", "ProcessingTaskInParallel\ProcessingTaskInParallel.csproj", "{2709933E-29E9-4C46-9E58-FC22A8BD0456}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyzingTextTool", "AnalyzingTextTool\AnalyzingTextTool.csproj", "{452DA2BE-6731-4D0D-B62D-D7DAF6016417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSerializeInBinaryFormat", "TestSerializeInBinaryFormat\TestSerializeInBinaryFormat.csproj", "{FA63556F-9E73-4959-816D-C6224E9899FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{452DA2BE-6731-4D0D-B62D-D7DAF6016417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{452DA2BE-6731-4D0D-B62D-D7DAF6016417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{452DA2BE-6731-4D0D-B62D-D7DAF6016417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA63556F-9E73-4959-816D-C6224E9899FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA63556F-9E73-4959-816D-C6224E9899FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA63556F-9E73-4959-816D-C6224E9899FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA63556F-9E73-4959-816D-C6224E9899FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
