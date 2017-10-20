@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -58,6 +59,7 @@ namespace AnalyzingTextTool
             string[] tenMostCommon = null;
             string longestWord = string.Empty;
             string[] shortestWord = null;
+            string informations = string.Empty;
 
             // Process the task by using all available CPUs on the host machine
             Parallel.Invoke(
@@ -65,6 +67,11 @@ namespace AnalyzingTextTool
                 {
                     // Now, find the ten most common words.
                     tenMostCommon = FindTenMostCommon(words);
+                    StringBuilder strBd = new StringBuilder();
+                    strBd.Append($"Current working context is {Thread.CurrentContext.ContextID} --- ");
+                    strBd.Append($"Current working thread is {Thread.CurrentThread.Name} --- ");
+                    strBd.Append($"Current working AppDomain is {AppDomain.CurrentDomain.FriendlyName} --- ");
+                    informations = strBd.ToString();
                 },
                 () =>
                 {
@@ -87,8 +94,10 @@ namespace AnalyzingTextTool
                 bookStats.AppendLine(s);
             }
             bookStats.AppendLine();
+            bookStats.AppendLine();
             bookStats.AppendFormat("Longest word is: {0}", longestWord);
             bookStats.AppendLine();
+            bookStats.AppendFormat("Informations : {0}", informations);
             bookStats.AppendLine();
             bookStats.AppendFormat("Most common words composed of\n number of character you put are:");
             bookStats.AppendLine();
