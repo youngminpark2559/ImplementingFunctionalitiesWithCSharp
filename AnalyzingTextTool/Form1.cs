@@ -40,9 +40,9 @@ namespace AnalyzingTextTool
             else if (!String.IsNullOrEmpty(textBox2.Text))
             {
                 //txtBook.Text = (new System.IO.StreamReader(textBox2.Text)).ToString();
-                string[] stringArray = File.ReadAllLines(textBox2.Text);
+                string stringText = File.ReadAllText(textBox2.Text);
 
-                txtBook.Text = string.Join("", stringArray);
+                txtBook.Text = stringText;
                 theEBook = txtBook.Text;
 
             }
