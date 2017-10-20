@@ -31,6 +31,14 @@ namespace TestSerializeInBinaryFormat
     [Serializable, XmlRoot(Namespace = "http://www.MyCompany.com")]
     public class JamesBondCar : Car
     {
+        public JamesBondCar(bool skyWorthy, bool seaWorthy)
+        {
+            canFly = skyWorthy;
+            canSubmerge = seaWorthy;
+        }
+        // The XmlSerializer demands a default constructor!
+        public JamesBondCar() { }
+
         [XmlAttribute]
         public bool canFly;
         [XmlAttribute]
@@ -81,6 +89,10 @@ namespace TestSerializeInBinaryFormat
 
             SaveAsXmlFormat(jbc, "CarData.xml");
             LoadFromXmlFile("CarData.xml");
+
+            SaveListOfCars();
+
+            SaveListOfCarsAsBinary();
         }
 
         static void SaveAsBinaryFormat(object objGraph, string fileName)
@@ -195,6 +207,45 @@ namespace TestSerializeInBinaryFormat
                     Console.WriteLine(stationPresets);
                 }
             }
+        }
+
+
+        static void SaveListOfCars()
+        {
+            // Now persist a List<T> of JamesBondCars.
+            // System.Collections and System.Collections.Generic namespaces are already implemented as Serializable. 
+            List<JamesBondCar> myCars = new List<JamesBondCar>();
+            // Add objects to generic List
+            myCars.Add(new JamesBondCar(true, true));
+            myCars.Add(new JamesBondCar(true, false));
+            myCars.Add(new JamesBondCar(false, true));
+            myCars.Add(new JamesBondCar(false, false));
+
+            // Create a physical file named CarCollection.xml
+            using (Stream fStream = new FileStream("CarCollection.xml",
+    FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                // XmlSerializer requires you to specify the type that you want to serialize
+                // In this case, List of JamesBondCar objects
+                XmlSerializer xmlFormat = new XmlSerializer(typeof(List<JamesBondCar>));
+                xmlFormat.Serialize(fStream, myCars);
+            }
+            Console.WriteLine("\n=> Saved list of cars!");
+        }
+
+
+        static void SaveListOfCarsAsBinary()
+        {
+            // Save ArrayList object (myCars) as binary.
+            List<JamesBondCar> myCars = new List<JamesBondCar>();
+
+            BinaryFormatter binFormat = new BinaryFormatter();
+            using (Stream fStream = new FileStream("AllMyCars.dat",
+              FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                binFormat.Serialize(fStream, myCars);
+            }
+            Console.WriteLine("\n=> Saved list of cars in binary!");
         }
     }
 }
