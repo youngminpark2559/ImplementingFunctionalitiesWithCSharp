@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace TestSerializeInBinaryFormat
 {
@@ -27,10 +28,12 @@ namespace TestSerializeInBinaryFormat
         public bool isHatchBack;
     }
 
-    [Serializable]
+    [Serializable, XmlRoot(Namespace = "http://www.MyCompany.com")]
     public class JamesBondCar : Car
     {
+        [XmlAttribute]
         public bool canFly;
+        [XmlAttribute]
         public bool canSubmerge;
     }
 
@@ -72,9 +75,12 @@ namespace TestSerializeInBinaryFormat
             // Pass in the object-graph and CarData.dat will be created in the location of Bin\Debug\
             SaveAsBinaryFormat(jbc, "CarData.dat");
             LoadFromBinaryFile("CarData.dat");
+
             SaveAsSoapFormat(jbc, "CarData.soap");
             LoadFromSoapFile("CarData.soap");
-            Console.ReadLine();
+
+            SaveAsXmlFormat(jbc, "CarData.xml");
+            LoadFromXmlFile("CarData.xml");
         }
 
         static void SaveAsBinaryFormat(object objGraph, string fileName)
@@ -157,5 +163,38 @@ namespace TestSerializeInBinaryFormat
         }
 
 
+
+        //XmlSerializer requires you to specify type information that represents the class you want to serialize
+        static void SaveAsXmlFormat(object objGraph, string fileName)
+        {
+            // Save object to a file named CarData.xml in XML format.
+            // Specify type information that represents the class you want to serialize.
+            XmlSerializer xmlFormat = new XmlSerializer(typeof(JamesBondCar));
+
+            using (Stream fStream = new FileStream(fileName,
+              FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                xmlFormat.Serialize(fStream, objGraph);
+            }
+            Console.WriteLine("\n=> Saved car in XML format!");
+        }
+
+
+        static void LoadFromXmlFile(string fileName)
+        {
+            XmlSerializer xmlFormat = new XmlSerializer(typeof(JamesBondCar));
+
+            using (Stream fStream = File.OpenRead(fileName))
+            {
+                JamesBondCar carFromDisk = (JamesBondCar)xmlFormat.Deserialize(fStream);
+
+                Console.WriteLine("1. Can this car fly? : {0}", carFromDisk.canFly);
+                Console.WriteLine("2. stationPresets of Radio object");
+                foreach (var stationPresets in carFromDisk.theRadio.stationPresets)
+                {
+                    Console.WriteLine(stationPresets);
+                }
+            }
+        }
     }
 }
