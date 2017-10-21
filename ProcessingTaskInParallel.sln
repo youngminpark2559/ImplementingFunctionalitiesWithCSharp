@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyzingTextTool", "Analyz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSerializeInBinaryFormat", "TestSerializeInBinaryFormat\TestSerializeInBinaryFormat.csproj", "{FA63556F-9E73-4959-816D-C6224E9899FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSerialization", "CustomSerialization\CustomSerialization.csproj", "{19E681A0-24E1-46B3-BB1A-D4DC1607C896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FA63556F-9E73-4959-816D-C6224E9899FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA63556F-9E73-4959-816D-C6224E9899FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA63556F-9E73-4959-816D-C6224E9899FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E681A0-24E1-46B3-BB1A-D4DC1607C896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E681A0-24E1-46B3-BB1A-D4DC1607C896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E681A0-24E1-46B3-BB1A-D4DC1607C896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E681A0-24E1-46B3-BB1A-D4DC1607C896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
