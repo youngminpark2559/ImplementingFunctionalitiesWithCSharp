@@ -19,6 +19,8 @@ namespace AnalyzingTextTool
 
         string theEBook;
 
+        string informations = string.Empty;
+
         public Form1()
         {
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace AnalyzingTextTool
             string[] tenMostCommon = null;
             string longestWord = string.Empty;
             string[] shortestWord = null;
-            string informations = string.Empty;
+            //string informations = string.Empty;
 
             // Process the task by using all available CPUs on the host machine
             Parallel.Invoke(
@@ -67,11 +69,11 @@ namespace AnalyzingTextTool
                 {
                     // Now, find the ten most common words.
                     tenMostCommon = FindTenMostCommon(words);
-                    StringBuilder strBd = new StringBuilder();
-                    strBd.Append($"Current working context is {Thread.CurrentContext.ContextID} --- ");
-                    strBd.Append($"Current working thread is {Thread.CurrentThread.Name} --- ");
-                    strBd.Append($"Current working AppDomain is {AppDomain.CurrentDomain.FriendlyName} --- ");
-                    informations = strBd.ToString();
+                    //StringBuilder strBd = new StringBuilder();
+                    //strBd.Append($"Current working context is {Thread.CurrentContext.ContextID} --- ");
+                    //strBd.Append($"Current working thread is {Thread.CurrentThread.Name} --- ");
+                    //strBd.Append($"Current working AppDomain is {AppDomain.CurrentDomain.FriendlyName} --- ");
+                    //informations = strBd.ToString();
                 },
                 () =>
                 {
@@ -130,13 +132,27 @@ namespace AnalyzingTextTool
 
         private string[] FindTenMostCommon(string[] words)
         {
+            
+            
+
             var frequencyOrder = from word in words
                                  where word.Length > Int32.Parse(numberOfChar.Text)
                                  group word by word into g
                                  orderby g.Count() descending
                                  select g.Key;
             string[] commonWords = (frequencyOrder.Take(Int32.Parse(numberOfWords.Text))).ToArray();
+
+            // Not sure but, confirmation code to show current context, thread, AppDomain looks more right to be in the block of method invoked
+            // However, it's showing same output
+            // Need to check whether I had wrong concept or I applied test code in the wrong way
+            StringBuilder strBd = new StringBuilder();
+            strBd.Append($"Current working context is {Thread.CurrentContext.ContextID} --- ");
+            strBd.Append($"Current working thread is {Thread.CurrentThread.Name} --- ");
+            strBd.Append($"Current working AppDomain is {AppDomain.CurrentDomain.FriendlyName} --- ");
+            informations = strBd.ToString();
+
             return commonWords;
+            
         }
         private string FindLongestWord(string[] words)
         {
@@ -159,6 +175,8 @@ namespace AnalyzingTextTool
                                     group word by word into g
                                     orderby g.Count() descending
                                     select g.Key;
+            
+
             string[] shortWords = (shortestWordOrder.Take(10)).ToArray();
             return shortWords;
 
