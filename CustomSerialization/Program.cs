@@ -35,6 +35,28 @@ namespace CustomSerialization
     }
 
 
+    [Serializable]
+    class MoreData
+    {
+        private string dataItemOne = "First data block";
+        private string dataItemTwo = "More data";
+
+        [OnSerializing]
+        private void OnSerializing(StreamingContext context)
+        {
+            // Called during the serialization process.
+            dataItemOne = dataItemOne.ToUpper();
+            dataItemTwo = dataItemTwo.ToUpper();
+        }
+
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            // Called when the deserialization process is complete.
+            dataItemOne = dataItemOne.ToLower();
+            dataItemTwo = dataItemTwo.ToLower();
+        }
+    }
 
 
     class Program
@@ -54,7 +76,21 @@ namespace CustomSerialization
             {
                 soapFormat.Serialize(fStream, myData);
             }
-            Console.ReadLine();
+            Console.WriteLine("Custom serialize for StringData completed");
+
+
+
+            MoreData myDataForMoreData = new MoreData();
+
+            // Save to a local file in SOAP format.
+            SoapFormatter soapFormatForMoreData = new SoapFormatter();
+            using (Stream fStream = new FileStream("MyDataForMoreData.soap",
+              FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                soapFormatForMoreData.Serialize(fStream, myDataForMoreData);
+            }
+
+            Console.WriteLine("Custom serialize for MoreData completed");
         }
     }
 }
