@@ -70,6 +70,13 @@ namespace SimpleDataSet
             inventoryTable.PrimaryKey = new[] { inventoryTable.Columns[0] };
 
 
+            //Added a statement to insert Inventory DataTable to a specific DataSet
+            // Finally, add our table to the DataSet.
+            //DataSet is consists of DataTables
+            //I'm adding a Inventory DataTable to DataSet
+            //by invoking FillDataSet(DataSet ds), with passing DataSet type object
+            //which will be a specific DataSet in which I'm going to insert Inventory DataTable
+            ds.Tables.Add(inventoryTable);
         }
 
 
