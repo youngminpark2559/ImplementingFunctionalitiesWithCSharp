@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Collections;
 
 namespace SimpleDataSet
 {
@@ -111,6 +112,57 @@ namespace SimpleDataSet
             temp.Rows[0].Delete();
             WriteLine($"After calling Delete: {row.RowState}");
         }
+
+
+
+        //Added a PrintDataSet(DataSet ds) to show DataSet by using DataSet properties
+        static void PrintDataSet(DataSet ds)
+        {
+            // Print out the DataSet name and any extended properties.
+            WriteLine($"DataSet is named: {ds.DataSetName}");
+            foreach (DictionaryEntry de in ds.ExtendedProperties)
+            {
+                WriteLine($"Key = {de.Key}, Value = {de.Value}");
+            }
+            WriteLine();
+
+            // Print out each table using rows and columns.
+            //Now, I only have "Inventory" DataTable in "Car Inventory" DataSet.
+            foreach (DataTable dt in ds.Tables)
+            {
+                WriteLine($"=> {dt.TableName} Table:");
+
+                // Print out the column names.
+                for (var curCol = 0; curCol < dt.Columns.Count; curCol++)
+                {
+                    //Show Columns horizontally.
+                    //Columns[0].ColumnName \t Columns[1].ColumnName
+                    //from each DataTable.
+                    //Now, I only have "Inventory" DataTable in "Car Inventory" DataSet.
+                    Write($"{dt.Columns[curCol].ColumnName}\t");
+                }
+                WriteLine("\n----------------------------------");
+
+                // Print the DataTable.
+                //This logic is inside of foreach (DataTable dt in ds.Tables),
+                //so that this logic shows row values of a specific one DataTable.
+                //Row contains a set of values like  BMW, Black, Hamlet
+                //I'm going to show each value in the row
+                for (var curRow = 0; curRow < dt.Rows.Count; curRow++)
+                {
+                    for (var curCol = 0; curCol < dt.Columns.Count; curCol++)
+                    {
+                        //dr.Rows[0][0] = BMW \t dr.Rows[0][1] = Black \t dr.Rows[0][2] = Hamlet
+                        //dt.Columns.Count=3
+                        //dr.Rows[1][0] = Saab \t dr.Rows[1][1] = Red \t dr.Rows[1][2] = Sea Breeze
+                        Write($"{dt.Rows[curRow][curCol]}\t");
+                    }
+                    WriteLine();
+                }
+            }
+        }
+
+
 
         static void Main(string[] args)
         {
