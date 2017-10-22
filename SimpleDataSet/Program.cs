@@ -41,6 +41,35 @@ namespace SimpleDataSet
               {carIDColumn, carMakeColumn, carColorColumn, carPetNameColumn});
 
 
+
+
+
+
+            // Added the functionality to deal with process of setting row of DataTable
+            // Now add some "rows" to the Inventory Table in memory.
+            DataRow carRow = inventoryTable.NewRow();
+            // Using indexer to set values, and if I put an invalid column name or ordinal position, I get a runtime exception
+            carRow["Make"] = "BMW";
+            carRow["Color"] = "Black";
+            carRow["PetName"] = "Hamlet";
+            //Put one row which I set above
+            inventoryTable.Rows.Add(carRow);
+
+            //Creating a new row
+            carRow = inventoryTable.NewRow();
+            //This time, using array to set row values
+            // Column 0 is the autoincremented ID field,
+            // so start at 1.
+            carRow[1] = "Saab";
+            carRow[2] = "Red";
+            carRow[3] = "Sea Breeze";
+            inventoryTable.Rows.Add(carRow);
+            //After above, I have a single DataTable containing two rows
+
+            // Set the Column[0] of Inventory DataTable as a primary
+            inventoryTable.PrimaryKey = new[] { inventoryTable.Columns[0] };
+
+
         }
 
 
