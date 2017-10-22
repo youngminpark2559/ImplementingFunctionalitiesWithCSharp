@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Data.Common;
 
 //Added a console project FillDataSetUsingSqlDataAdapter using DataAdapter to set DataSet by putting DataTables in DataSet.
 namespace FillDataSetUsingSqlDataAdapter
@@ -28,6 +29,19 @@ namespace FillDataSetUsingSqlDataAdapter
             //Inform adapter of the Select command query text which is mapped to SQL statement and connection information.
             //
             SqlDataAdapter adapter = new SqlDataAdapter("Select * From Inventory", connectionString);
+
+
+            //Added codes to set friendly-names for DataTable and columns by using funtionalities of SqlDataAdapter object.
+
+            // Now map DB column names to user-friendly names.
+            //Output
+            //DataSet name : AutoLot
+            //DataTable friendly name : Current Inventory
+            //column friend name : Car Id  (Make  Color)  Name of Car
+            DataTableMapping tableMapping =
+              adapter.TableMappings.Add("Inventory", "Current Inventory");
+            tableMapping.ColumnMappings.Add("CarId", "Car Id");
+            tableMapping.ColumnMappings.Add("PetName", "Name of Car");
 
             // Fill our DataSet(ds) with a new table named Inventory.
             adapter.Fill(ds, "Inventory");
