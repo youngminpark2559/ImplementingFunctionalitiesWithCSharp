@@ -1,5 +1,7 @@
 ﻿
 
+
+
 using System;
 using static System.Console;
 using System.Collections.Generic;
@@ -8,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Collections;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SimpleDataSet
 {
@@ -246,6 +250,40 @@ namespace SimpleDataSet
 
 
 
+
+        //Added SaveAndLoadAsBinary(DataSet carsInventoryDS) to serialize carsInventoryDS DataSet object to binary type and save it to BinaryCars.bin file.
+
+        //Serializing object to XML format can cause overhead due to its descriptive nature.
+        //Serializing in the binary format is good alternative for XML format in terms of overhead aspect and the case that needs cross machine boundary.
+        static void SaveAndLoadAsBinary(DataSet carsInventoryDS)
+        {
+            // Set binary serialization flag(SerializationFormat.Binary) 
+            //and assign it to carsInventoryDS.RemotingFormat(Car Inventory DataSet's property).
+            carsInventoryDS.RemotingFormat = SerializationFormat.Binary;
+
+            // Set the FileStream defining it's going to create a BinaryCars.bin file
+            var fs = new FileStream("BinaryCars.bin", FileMode.Create);
+
+            //Get BinaryFormatter object.
+            var bFormat = new BinaryFormatter();
+
+            //Serialize carsInventoryDS object and save serialized data to BinaryCars.bin file
+            bFormat.Serialize(fs, carsInventoryDS);
+
+            //Close FileStream
+            fs.Close();
+
+            // Clear out DataSet.
+            carsInventoryDS.Clear();
+
+            // Load DataSet from binary file.
+            fs = new FileStream("BinaryCars.bin", FileMode.Open);
+
+            //By using BinaryFormatter object, I deserialize BinaryCars.bin, and construct carsInventoryDS object in object type, and then explicitly type cast to DataSet.
+            var data = (DataSet)bFormat.Deserialize(fs);
+        }
+
+
         static void Main(string[] args)
         {
             WriteLine("***** Fun with DataSets *****\n");
@@ -281,6 +319,9 @@ namespace SimpleDataSet
             //    <PetName>Sea Breeze</PetName>
             //  </Inventory>
             //</Car_x0020_Inventory>
+
+
+            SaveAndLoadAsBinary(carsInventoryDS);
         }
     }
 }
