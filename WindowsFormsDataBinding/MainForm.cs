@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-//Added a winforms project to bind data from DataTable to DataGridView control
+//Added a winforms project "WindowsFormsDataBinding" to bind data from DataTable to DataGridView control
 namespace WindowsFormsDataBinding
 {
 
@@ -90,6 +90,33 @@ namespace WindowsFormsDataBinding
             };
 
             CreateDataTable();
+        }
+
+
+        //Added a btnRemoveCar_Click() to delete a row, based on Id value which user puts.
+        // Remove this row from the DataRowCollection of DataTable in memory.
+        private void btnRemoveCar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Find the correct row to delete based on value which user put in txtCarToRemove textbox.
+                //Invoke Select method of inventoryTable DataTable object by passing string value like Id=2
+                //and I assign selected row to the rowToDelete local variable which is DataRow array type.
+                DataRow[] rowToDelete = inventoryTable.Select($"Id={int.Parse(txtCarToRemove.Text)}");
+
+                // Delete 1st row from DataTable in memory by invoking Delete() of DataRow type
+                rowToDelete[0].Delete();
+
+
+                //Invoke AcceptChanges() of inventoryTable DataTable to apply change to the DataTable. 
+                inventoryTable.AcceptChanges();
+            }
+            catch (Exception ex)
+            {
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }
