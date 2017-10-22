@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using static System.Console;
 using System.Collections.Generic;
 using System.Linq;
@@ -164,63 +166,84 @@ namespace SimpleDataSet
         //}
 
 
-         //This is updated version of PrintDataSet() invoking PrintTable() helper method using DataTableReader type for retrieving data from DataTable.
-         //Result is identical with above pre-updated PrintDataSet()
-         static void PrintDataSet(DataSet ds)
-         {
-             // Print out any name and extended properties.
-             WriteLine($"DataSet is named: {ds.DataSetName}");
-             foreach (DictionaryEntry de in ds.ExtendedProperties)
-             {
-                 WriteLine($"Key = {de.Key}, Value = {de.Value}");
-             }
-             WriteLine();
- 
-             //Print out each table using data reader
-             foreach (DataTable dt in ds.Tables)
-             {
-                 WriteLine($"=> {dt.TableName} Table:");
-                 // Print out the column names.
-                 for (int curCol = 0; curCol<dt.Columns.Count; curCol++)
-                 {
-                     Write($"{dt.Columns[curCol].ColumnName.Trim()}\t");
-                 }
-                 WriteLine("\n----------------------------------");
- 
-                 // Call our new helper method.
-                 PrintTable(dt);
-             }
-         }
- 
- 
- 
- 
-         //Added PrintTable(DataTable dt) to retrieve data from DataTable by using DataTableReader object and updated PrintDataSet(DataSet ds) using DataTableReader
- 
-         //Processing DataTable data by using DataTableReader object.
-         //It's different between retrieving data from connected layer and disconnected layer.
-         //For example, connection to the DB is needed for connected layer.
-         //But the process or result is identical.
-         //This method retrieves data from DataTable from disconnected layer.
-         static void PrintTable(DataTable dt)
-         {
-             // Get the DataTableReader type.
-             DataTableReader dtReader = dt.CreateDataReader();
- 
-             // The DataTableReader works just like the DataReader of data provider in connected layer.
-             // DataTableReader is good choice when I retrieve data from DataTable without iteration of row and column.
-             //Read record until there is no record.
-             while (dtReader.Read())
-             {
-                 for (var i = 0; i<dtReader.FieldCount; i++)
-                 {
-                     //dtReader.GetValue(0) \t dtReader.GetValue(1) \t
-                     Write($"{dtReader.GetValue(i).ToString().Trim()}\t");
-                 }
-                 WriteLine();
-             }
-             dtReader.Close();
-         }
+        //This is updated version of PrintDataSet() invoking PrintTable() helper method using DataTableReader type for retrieving data from DataTable.
+        //Result is identical with above pre-updated PrintDataSet()
+        static void PrintDataSet(DataSet ds)
+        {
+            // Print out any name and extended properties.
+            WriteLine($"DataSet is named: {ds.DataSetName}");
+            foreach (DictionaryEntry de in ds.ExtendedProperties)
+            {
+                WriteLine($"Key = {de.Key}, Value = {de.Value}");
+            }
+            WriteLine();
+
+            //Print out each table using data reader
+            foreach (DataTable dt in ds.Tables)
+            {
+                WriteLine($"=> {dt.TableName} Table:");
+                // Print out the column names.
+                for (int curCol = 0; curCol < dt.Columns.Count; curCol++)
+                {
+                    Write($"{dt.Columns[curCol].ColumnName.Trim()}\t");
+                }
+                WriteLine("\n----------------------------------");
+
+                // Call our new helper method.
+                PrintTable(dt);
+            }
+        }
+
+
+
+
+        //Added PrintTable(DataTable dt) to retrieve data from DataTable by using DataTableReader object and updated PrintDataSet(DataSet ds) using DataTableReader
+
+        //Processing DataTable data by using DataTableReader object.
+        //It's different between retrieving data from connected layer and disconnected layer.
+        //For example, connection to the DB is needed for connected layer.
+        //But the process or result is identical.
+        //This method retrieves data from DataTable from disconnected layer.
+        static void PrintTable(DataTable dt)
+        {
+            // Get the DataTableReader type.
+            DataTableReader dtReader = dt.CreateDataReader();
+
+            // The DataTableReader works just like the DataReader of data provider in connected layer.
+            // DataTableReader is good choice when I retrieve data from DataTable without iteration of row and column.
+            //Read record until there is no record.
+            while (dtReader.Read())
+            {
+                for (var i = 0; i < dtReader.FieldCount; i++)
+                {
+                    //dtReader.GetValue(0) \t dtReader.GetValue(1) \t
+                    Write($"{dtReader.GetValue(i).ToString().Trim()}\t");
+                }
+                WriteLine();
+            }
+            dtReader.Close();
+        }
+
+
+
+
+        //Added SaveAndLoadAsXml(DataSet carsInventoryDS) to serialize DataTable and DataSet objects to XML file.
+        //This is method to serialize DataTable and DataSet object to XML.
+        //I'm passing in DataSet object to this method.
+        static void SaveAndLoadAsXml(DataSet carsInventoryDS)
+        {
+            //Save this carsInventoryDS DataSet to carsDataSet.xml file in bin\debug.
+            carsInventoryDS.WriteXml("carsDataSet.xml");
+            //Save this carsInventoryDS DataSet to carsDataSet.xsd file in bin\debug.
+            carsInventoryDS.WriteXmlSchema("carsDataSet.xsd");
+
+            // Clear out carsInventoryDS DataSet.
+            carsInventoryDS.Clear();
+
+            // Load carsInventoryDS DataSet from XML file.
+            carsInventoryDS.ReadXml("carsDataSet.xml");
+        }
+
 
 
         static void Main(string[] args)
@@ -241,7 +264,23 @@ namespace SimpleDataSet
             FillDataSet(carsInventoryDS);
             PrintDataSet(carsInventoryDS);
 
-            ReadLine();
+            SaveAndLoadAsXml(carsInventoryDS);
+            //Output
+            //<?xml version="1.0" standalone="yes"?>
+            //<Car_x0020_Inventory>
+            //  <Inventory>
+            //    <CarID>1</CarID>
+            //    <Make>BMW</Make>
+            //    <Color>Black</Color>
+            //    <PetName>Hamlet</PetName>
+            //  </Inventory>
+            //  <Inventory>
+            //    <CarID>2</CarID>
+            //    <Make>Saab</Make>
+            //    <Color>Red</Color>
+            //    <PetName>Sea Breeze</PetName>
+            //  </Inventory>
+            //</Car_x0020_Inventory>
         }
     }
 }
