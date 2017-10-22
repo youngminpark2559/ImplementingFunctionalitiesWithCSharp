@@ -117,6 +117,7 @@ namespace SimpleDataSet
             WriteLine("***** Fun with DataSets *****\n");
 
             // Create the DataSet object named Car Inventory and add a few properties to that DataSet
+            //which resides in memory
             var carsInventoryDS = new DataSet("Car Inventory");
 
             carsInventoryDS.ExtendedProperties["TimeStamp"] = DateTime.Now;
@@ -124,6 +125,8 @@ namespace SimpleDataSet
             carsInventoryDS.ExtendedProperties["Company"] =
               "Mikko’s Hot Tub Super Store";
 
+            //Added comments for FillDataSet(carsInventoryDS), var carsInventoryDS = new DataSet("Car Inventory")
+            //I'm invoking FillDataSet(carsInventoryDS), with passing in carsInventoryDS which will be a specific DataSet which will contain Inventory DataTable after I call ds.Tables.Add(inventoryTable)
             FillDataSet(carsInventoryDS);
             PrintDataSet(carsInventoryDS);
 
