@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADONETTest", "ADONETTest\AD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionTestClient", "TransactionTestClient\TransactionTestClient.csproj", "{F8223C11-AEC5-4431-A6FB-B17961586355}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDataSet", "SimpleDataSet\SimpleDataSet.csproj", "{CD912892-49E1-48C3-B284-F119738569DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{F8223C11-AEC5-4431-A6FB-B17961586355}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8223C11-AEC5-4431-A6FB-B17961586355}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8223C11-AEC5-4431-A6FB-B17961586355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD912892-49E1-48C3-B284-F119738569DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD912892-49E1-48C3-B284-F119738569DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD912892-49E1-48C3-B284-F119738569DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD912892-49E1-48C3-B284-F119738569DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
