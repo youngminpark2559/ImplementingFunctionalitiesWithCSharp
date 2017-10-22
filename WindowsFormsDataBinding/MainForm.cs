@@ -118,6 +118,42 @@ namespace WindowsFormsDataBinding
                 }
             }
         }
+
+
+        //Added a btnDisplayMakes_Click() to select and retrieve data, based on string value in Make like BMW
+        private void btnDisplayMakes_Click(object sender, EventArgs e)
+        {
+            //Get a string from txtMakeToView and make string like Make='BMW"
+            //and assign it to filterStr local variable.
+            string filterStr = $"Make='{txtMakeToView.Text}'";
+
+            // Find all rows matching the filter which is "I want all rows which contain BMW in their Make column,
+            //and then, assign row(s) to makes local variable of DataRow array type.
+            DataRow[] makes = inventoryTable.Select(filterStr);
+
+            // Show what we got.
+            //This is the case that the lenght of makes array is 0 which means that Select() didn't find any row which contains BMW in their column.
+            if (makes.Length == 0)
+                MessageBox.Show("Sorry, no cars...", "Selection error!");
+            else
+            {
+                //Declare strMake local variable to store.
+                string strMake = null;
+
+
+                for (var i = 0; i < makes.Length; i++)
+                {
+                    //Append to strMake by iterating.
+                    //makes[0]["PetName] means that it's using indexer, retrieving data which is in PetName column from 1st row.
+                    //As a result, 
+                    //Chucky
+                    //Fred
+                    //Sidd
+                    strMake += makes[i]["PetName"] + "\n";
+                }
+                // Now show all matches in a message box.
+                MessageBox.Show(strMake, $"We have {txtMakeToView.Text}s named:");
+            }
+        }
     }
 }
-
