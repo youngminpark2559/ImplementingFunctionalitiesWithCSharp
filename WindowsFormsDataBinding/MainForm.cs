@@ -129,7 +129,14 @@ namespace WindowsFormsDataBinding
 
             // Find all rows matching the filter which is "I want all rows which contain BMW in their Make column,
             //and then, assign row(s) to makes local variable of DataRow array type.
-            DataRow[] makes = inventoryTable.Select(filterStr);
+            //If I call Select() of DataTable object, it's process like it's based on standard SQL syntax.
+            //DataRow[] makes = inventoryTable.Select(filterStr);
+
+            // Sort by PetName in ascending order.
+            //DataRow[] makes = inventoryTable.Select(filterStr, "PetName");
+
+            // Sort by PetName in descending order.
+            DataRow[] makes = inventoryTable.Select(filterStr, "PetName DESC");
 
             // Show what we got.
             //This is the case that the lenght of makes array is 0 which means that Select() didn't find any row which contains BMW in their column.
@@ -154,6 +161,31 @@ namespace WindowsFormsDataBinding
                 // Now show all matches in a message box.
                 MessageBox.Show(strMake, $"We have {txtMakeToView.Text}s named:");
             }
+        }
+
+        //Added a helper method ShowCarsWithIdGreaterThanFive().
+        //Add a helper method ShowCarsWithIdGreaterThanFive().
+        private void ShowCarsWithIdGreaterThanFive()
+        {
+            // Now show the petnames of all cars with ID greater than 5.
+            DataRow[] properIDs;
+            string newFilterStr = "ID > 5";
+
+            //Retrieve DataRow objects which have Id greater than 5 from inventoryTable DataTable,
+            //and assign them to DataRow[].
+            properIDs = inventoryTable.Select(newFilterStr);
+
+            string strIDs = null;
+
+            for (int i = 0; i < properIDs.Length; i++)
+            {
+                //Retrieve 1st row object(properIDs[0]), and assign it to temp.
+                DataRow temp = properIDs[i];
+
+                //In 1st row object, search and set the value assigned to PetName, and ID.
+                strIDs += $"{temp["PetName"]} is ID {temp["ID"]}\n";
+            }
+            MessageBox.Show(strIDs, "Pet names of cars where ID > 5");
         }
     }
 }
