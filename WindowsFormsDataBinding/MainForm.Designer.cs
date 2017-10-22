@@ -36,6 +36,7 @@
             this.txtMakeToView = new System.Windows.Forms.TextBox();
             this.btnDisplayMakes = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnChangeMakes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.carInventoryGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -62,16 +63,16 @@
             // 
             // txtCarToRemove
             // 
-            this.txtCarToRemove.Location = new System.Drawing.Point(17, 48);
+            this.txtCarToRemove.Location = new System.Drawing.Point(6, 48);
             this.txtCarToRemove.Name = "txtCarToRemove";
-            this.txtCarToRemove.Size = new System.Drawing.Size(125, 21);
+            this.txtCarToRemove.Size = new System.Drawing.Size(56, 21);
             this.txtCarToRemove.TabIndex = 2;
             // 
             // btnRemoveCar
             // 
-            this.btnRemoveCar.Location = new System.Drawing.Point(162, 48);
+            this.btnRemoveCar.Location = new System.Drawing.Point(81, 48);
             this.btnRemoveCar.Name = "btnRemoveCar";
-            this.btnRemoveCar.Size = new System.Drawing.Size(62, 23);
+            this.btnRemoveCar.Size = new System.Drawing.Size(50, 23);
             this.btnRemoveCar.TabIndex = 3;
             this.btnRemoveCar.Text = "Delete";
             this.btnRemoveCar.UseVisualStyleBackColor = true;
@@ -83,7 +84,7 @@
             this.groupBox1.Controls.Add(this.btnRemoveCar);
             this.groupBox1.Location = new System.Drawing.Point(12, 312);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(241, 100);
+            this.groupBox1.Size = new System.Drawing.Size(154, 100);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Enter ID of Car to Delete";
@@ -92,14 +93,14 @@
             // 
             this.txtMakeToView.Location = new System.Drawing.Point(17, 48);
             this.txtMakeToView.Name = "txtMakeToView";
-            this.txtMakeToView.Size = new System.Drawing.Size(125, 21);
+            this.txtMakeToView.Size = new System.Drawing.Size(96, 21);
             this.txtMakeToView.TabIndex = 2;
             // 
             // btnDisplayMakes
             // 
-            this.btnDisplayMakes.Location = new System.Drawing.Point(162, 48);
+            this.btnDisplayMakes.Location = new System.Drawing.Point(130, 48);
             this.btnDisplayMakes.Name = "btnDisplayMakes";
-            this.btnDisplayMakes.Size = new System.Drawing.Size(62, 23);
+            this.btnDisplayMakes.Size = new System.Drawing.Size(50, 23);
             this.btnDisplayMakes.TabIndex = 3;
             this.btnDisplayMakes.Text = "View";
             this.btnDisplayMakes.UseVisualStyleBackColor = true;
@@ -109,18 +110,29 @@
             // 
             this.groupBox2.Controls.Add(this.txtMakeToView);
             this.groupBox2.Controls.Add(this.btnDisplayMakes);
-            this.groupBox2.Location = new System.Drawing.Point(329, 312);
+            this.groupBox2.Location = new System.Drawing.Point(196, 312);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(241, 100);
+            this.groupBox2.Size = new System.Drawing.Size(197, 100);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Enter Make to View";
+            // 
+            // btnChangeMakes
+            // 
+            this.btnChangeMakes.Location = new System.Drawing.Point(422, 312);
+            this.btnChangeMakes.Name = "btnChangeMakes";
+            this.btnChangeMakes.Size = new System.Drawing.Size(148, 37);
+            this.btnChangeMakes.TabIndex = 6;
+            this.btnChangeMakes.Text = "Search BMW and change to Yugo";
+            this.btnChangeMakes.UseVisualStyleBackColor = true;
+            this.btnChangeMakes.Click += new System.EventHandler(this.btnChangeMakes_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 424);
+            this.Controls.Add(this.btnChangeMakes);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -147,6 +159,7 @@
         private System.Windows.Forms.TextBox txtMakeToView;
         private System.Windows.Forms.Button btnDisplayMakes;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnChangeMakes;
     }
 }
 

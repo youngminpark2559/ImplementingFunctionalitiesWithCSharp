@@ -187,5 +187,34 @@ namespace WindowsFormsDataBinding
             }
             MessageBox.Show(strIDs, "Pet names of cars where ID > 5");
         }
+
+
+
+
+
+        //Added a btnChangeMakes_Click() to find all rows which have BMW in their Make column, and change the value from BMW to Yugo.
+        // Find the rows you want to edit with a filter.
+        private void btnChangeMakes_Click(object sender, EventArgs e)
+        {
+            // If user click No from MessageBoxButtons, process stops by being returned.
+            if (DialogResult.Yes !=
+              MessageBox.Show("Are you sure?? BMWs are much nicer than Yugos!",
+              "Please Confirm!", MessageBoxButtons.YesNo)) return;
+
+            //If user click Yes from MessageBoxButtons, change process is going.
+            //Set a filter to be used as condition in SQL syntax query by being used in Select(). 
+            string filterStr = "Make='BMW'";
+
+            //Find all rows matching the filter from inventoryTable DataTable,
+            //and assign row(s) to makes DataRow[].
+            DataRow[] makes = inventoryTable.Select(filterStr);
+
+            // Change all Beemers to Yugos!
+            for (int i = 0; i < makes.Length; i++)
+            {
+                //Make column of 1st row is set by Yugo.
+                makes[i]["Make"] = "Yugo";
+            }
+        }
     }
 }
