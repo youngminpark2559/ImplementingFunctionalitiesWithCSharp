@@ -44,9 +44,6 @@ namespace SimpleDataSet
 
 
 
-
-
-            // Added the functionality to deal with process of setting row of DataTable
             // Now add some "rows" to the Inventory Table in memory.
             DataRow carRow = inventoryTable.NewRow();
             // Using indexer to set values, and if I put an invalid column name or ordinal position, I get a runtime exception
@@ -71,7 +68,6 @@ namespace SimpleDataSet
             inventoryTable.PrimaryKey = new[] { inventoryTable.Columns[0] };
 
 
-            //Added a statement to insert Inventory DataTable to a specific DataSet
             // Finally, add our table to the DataSet.
             //DataSet is consists of DataTables
             //I'm adding a Inventory DataTable to DataSet
@@ -80,8 +76,6 @@ namespace SimpleDataSet
             ds.Tables.Add(inventoryTable);
         }
 
-
-        //Method to inspect RowState of Temp DataTable
         private static void ManipulateDataRowState()
         {
             // Create a temp DataTable for testing in memory
@@ -114,7 +108,6 @@ namespace SimpleDataSet
         }
 
 
-
         //Added a PrintDataSet(DataSet ds) to show DataSet by using DataSet properties
         static void PrintDataSet(DataSet ds)
         {
@@ -127,7 +120,6 @@ namespace SimpleDataSet
             WriteLine();
 
             // Print out each table using rows and columns.
-            //Now, I only have "Inventory" DataTable in "Car Inventory" DataSet.
             foreach (DataTable dt in ds.Tables)
             {
                 WriteLine($"=> {dt.TableName} Table:");
@@ -135,17 +127,15 @@ namespace SimpleDataSet
                 // Print out the column names.
                 for (var curCol = 0; curCol < dt.Columns.Count; curCol++)
                 {
-                    //Show Columns horizontally.
+                    //Show Columns horizontally
                     //Columns[0].ColumnName \t Columns[1].ColumnName
-                    //from each DataTable.
-                    //Now, I only have "Inventory" DataTable in "Car Inventory" DataSet.
+                    //from each DataTable
+                    //Now, I only have "Inventory" DataTable in "Car Inventory" DataSet
                     Write($"{dt.Columns[curCol].ColumnName}\t");
                 }
                 WriteLine("\n----------------------------------");
 
                 // Print the DataTable.
-                //This logic is inside of foreach (DataTable dt in ds.Tables),
-                //so that this logic shows row values of a specific one DataTable.
                 //Row contains a set of values like  BMW, Black, Hamlet
                 //I'm going to show each value in the row
                 for (var curRow = 0; curRow < dt.Rows.Count; curRow++)
@@ -164,12 +154,73 @@ namespace SimpleDataSet
 
 
 
+
+        //This is updated version of PrintDataSet() invoking PrintTable() helper method using DataTableReader type for retrieving data from DataTable.
+        //Result is identical with above pre-updated PrintDataSet()
+        static void PrintDataSet(DataSet ds)
+        {
+            // Print out any name and extended properties.
+            WriteLine($"DataSet is named: {ds.DataSetName}");
+            foreach (DictionaryEntry de in ds.ExtendedProperties)
+            {
+                WriteLine($"Key = {de.Key}, Value = {de.Value}");
+            }
+            WriteLine();
+
+            //Print out each table using data reader
+            foreach (DataTable dt in ds.Tables)
+            {
+                WriteLine($"=> {dt.TableName} Table:");
+                // Print out the column names.
+                for (int curCol = 0; curCol < dt.Columns.Count; curCol++)
+                {
+                    Write($"{dt.Columns[curCol].ColumnName.Trim()}\t");
+                }
+                WriteLine("\n----------------------------------");
+
+                // Call our new helper method.
+                PrintTable(dt);
+            }
+        }
+
+
+
+
+        //Added PrintTable(DataTable dt) to retrieve data from DataTable by using DataTableReader object and updated PrintDataSet(DataSet ds) using DataTableReader
+
+        //Processing DataTable data by using DataTableReader object.
+        //It's different between retrieving data from connected layer and disconnected layer.
+        //For example, connection to the DB is needed for connected layer.
+        //But the process or result is identical.
+        //This method retrieves data from DataTable from disconnected layer.
+        static void PrintTable(DataTable dt)
+        {
+            // Get the DataTableReader type.
+            DataTableReader dtReader = dt.CreateDataReader();
+
+            // The DataTableReader works just like the DataReader of data provider in connected layer.
+            // DataTableReader is good choice when I retrieve data from DataTable without iteration of row and column.
+            //Read record until there is no record.
+            while (dtReader.Read())
+            {
+                for (var i = 0; i < dtReader.FieldCount; i++)
+                {
+                    //dtReader.GetValue(0) \t dtReader.GetValue(1) \t
+                    Write($"{dtReader.GetValue(i).ToString().Trim()}\t");
+                }
+                WriteLine();
+            }
+            dtReader.Close();
+        }
+
+
+
+
         static void Main(string[] args)
         {
             WriteLine("***** Fun with DataSets *****\n");
 
             // Create the DataSet object named Car Inventory and add a few properties to that DataSet
-            //which resides in memory
             var carsInventoryDS = new DataSet("Car Inventory");
 
             carsInventoryDS.ExtendedProperties["TimeStamp"] = DateTime.Now;
@@ -177,7 +228,6 @@ namespace SimpleDataSet
             carsInventoryDS.ExtendedProperties["Company"] =
               "Mikko’s Hot Tub Super Store";
 
-            //Added comments for FillDataSet(carsInventoryDS), var carsInventoryDS = new DataSet("Car Inventory")
             //I'm invoking FillDataSet(carsInventoryDS), with passing in carsInventoryDS which will be a specific DataSet which will contain Inventory DataTable after I call ds.Tables.Add(inventoryTable)
             FillDataSet(carsInventoryDS);
             PrintDataSet(carsInventoryDS);
