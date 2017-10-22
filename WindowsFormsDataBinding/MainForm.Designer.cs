@@ -37,9 +37,12 @@
             this.btnDisplayMakes = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnChangeMakes = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridYugosView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.carInventoryGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridYugosView)).BeginInit();
             this.SuspendLayout();
             // 
             // carInventoryGridView
@@ -55,11 +58,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(25, 27);
+            this.label1.Location = new System.Drawing.Point(8, 442);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(324, 24);
+            this.label1.Size = new System.Drawing.Size(127, 24);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Here is what we have in stock";
+            this.label1.Text = "Only Yugos";
             // 
             // txtCarToRemove
             // 
@@ -127,11 +130,32 @@
             this.btnChangeMakes.UseVisualStyleBackColor = true;
             this.btnChangeMakes.Click += new System.EventHandler(this.btnChangeMakes_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(8, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(324, 24);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Here is what we have in stock";
+            // 
+            // dataGridYugosView
+            // 
+            this.dataGridYugosView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridYugosView.Location = new System.Drawing.Point(12, 479);
+            this.dataGridYugosView.Name = "dataGridYugosView";
+            this.dataGridYugosView.RowTemplate.Height = 23;
+            this.dataGridYugosView.Size = new System.Drawing.Size(558, 226);
+            this.dataGridYugosView.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 424);
+            this.ClientSize = new System.Drawing.Size(592, 714);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dataGridYugosView);
             this.Controls.Add(this.btnChangeMakes);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -144,6 +168,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridYugosView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +185,8 @@
         private System.Windows.Forms.Button btnDisplayMakes;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnChangeMakes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dataGridYugosView;
     }
 }
 

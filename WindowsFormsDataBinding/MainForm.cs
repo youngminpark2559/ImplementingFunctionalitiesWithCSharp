@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,18 +12,16 @@ using System.Windows.Forms;
 //Added a winforms project "WindowsFormsDataBinding" to bind data from DataTable to DataGridView control
 namespace WindowsFormsDataBinding
 {
-
-
     public partial class MainForm : Form
     {
         //Declare listCars field(=global variable, member variable) which will contains Car objects. 
         List<Car> listCars = null;
 
-
         //Get a DataTable object, and assign it to inventoryTable field.
         DataTable inventoryTable = new DataTable();
 
-
+        // View of the DataTable.
+        DataView yugosOnlyView;
 
 
 
@@ -70,6 +65,19 @@ namespace WindowsFormsDataBinding
         }
 
 
+        //Added a CreateDataView() to configure DataView by getting DataTable, setting RowFilter, and bind data to DataView control.
+        private void CreateDataView()
+        {
+            // Set the table(inventoryTable) that is used to construct this view(DataView yugosOnlyView).
+            yugosOnlyView = new DataView(inventoryTable);
+
+            //Configure the RowFilter of yugosOnlyView DataView to Make = 'Yugo'
+            yugosOnlyView.RowFilter = "Make = 'Yugo'";
+
+            // Bind to the new grid.
+            //Completed setting of yugosOnlyView DataView is bound to DataSource of dataGridYugosView control.
+            dataGridYugosView.DataSource = yugosOnlyView;
+        }
 
 
         public MainForm()
@@ -89,7 +97,11 @@ namespace WindowsFormsDataBinding
                 new Car { Id = 8, PetName = "Sarah", Make = "Colt", Color = "Black" }
             };
 
+            // Make a data table.
             CreateDataTable();
+
+            // Make a view.
+            CreateDataView();
         }
 
 
