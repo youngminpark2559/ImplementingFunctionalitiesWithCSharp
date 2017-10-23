@@ -45,19 +45,35 @@ namespace AutoLotConsoleApp
         }
 
 
-        //Added a helper PrintAllInventory() to show all records in Inventory table with being helped by ToString() of Car class.
+        ////Added a helper PrintAllInventory() to show all records in Inventory table with being helped by ToString() of Car class.
+        //private static void PrintAllInventory()
+        //{
+        //    // Select all items from the Inventory table of AutoLot,
+        //    // and print out the data using our custom ToString()
+        //    // of the Car entity class.
+        //    using (var context = new AutoLotEntities())
+        //    {
+        //        //Car class is decorated with [Table("Inventory")]
+        //        //One Inventory object means one row of records corresponding to each columns,
+        //        //for example, Inventory object 1 = Id=1, Name=Bim, Color=White, Make=BMW
+        //        //DbSet<Inventory> is consists of multiple Inventory objects.
+        //        foreach (Car c in context.Cars)
+        //        {
+        //            //Iterating record by Cars property sends SELECT query implicitly to the ADO.NET data provider in behind scene.
+        //            //In other words, EF creates DataReader to retrieve records from DB, and converts the records from DataReader type to Car type.
+        //            WriteLine(c);
+        //        }
+        //    }
+        //}
+
+        //Added an updated helper PrintAllInventory() to fill DbSet with SQL query with using EF.
+        //It can be implemented either in inline or stored procedures.
         private static void PrintAllInventory()
         {
-            // Select all items from the Inventory table of AutoLot,
-            // and print out the data using our custom ToString()
-            // of the Car entity class.
             using (var context = new AutoLotEntities())
             {
-                //Car class is decorated with [Table("Inventory")]
-                //One Inventory object means one row of records corresponding to each columns,
-                //for example, Inventory object 1 = Id=1, Name=Bim, Color=White, Make=BMW
-                //DbSet<Inventory> is consists of multiple Inventory objects.
-                foreach (Car c in context.Cars)
+                //Uses inline SQL query
+                foreach (Car c in context.Cars.SqlQuery("Select CarId,Make,Color,PetName as CarNickName from Inventory where Make = @p0", "BMW"))
                 {
                     WriteLine(c);
                 }
