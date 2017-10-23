@@ -15,6 +15,25 @@ namespace MultitabledDataSetApp
 {
     public partial class MainForm : Form
     {
+
+        // Create DataSet named AutoLot in disconnected manner.
+        private DataSet _autoLotDs = new DataSet("AutoLot");
+
+        // Form wide connection string.
+        private string _connectionString;
+
+        // Make use of command builders to simplify data adapter configuration.
+        //SqlCommandBuilder for Inventory.
+        private SqlCommandBuilder _sqlCbInventory;
+        private SqlCommandBuilder _sqlCbCustomers;
+        private SqlCommandBuilder _sqlCbOrders;
+
+        // Our data adapters (for each table).
+        //SqlDataAdapter for Inventory DataTable.
+        private SqlDataAdapter _invTableAdapter;
+        private SqlDataAdapter _custTableAdapter;
+        private SqlDataAdapter _ordersTableAdapter;
+
         public MainForm()
         {
             InitializeComponent();
@@ -49,28 +68,7 @@ namespace MultitabledDataSetApp
             dataGridViewOrders.DataSource = _autoLotDs.Tables["Orders"];
         }
 
-
-        // Create DataSet named AutoLot in disconnected manner.
-        private DataSet _autoLotDs = new DataSet("AutoLot");
-
-        // Form wide connection string.
-        private string _connectionString;
-
-        // Make use of command builders to simplify data adapter configuration.
-        //SqlCommandBuilder for Inventory.
-        private SqlCommandBuilder _sqlCbInventory;
-        private SqlCommandBuilder _sqlCbCustomers;
-        private SqlCommandBuilder _sqlCbOrders;
-
-        // Our data adapters (for each table).
-        //SqlDataAdapter for Inventory DataTable.
-        private SqlDataAdapter _invTableAdapter;
-        private SqlDataAdapter _custTableAdapter;
-        private SqlDataAdapter _ordersTableAdapter;
-
         
-
-
 
 
         //Added a BuildTableRelationship()

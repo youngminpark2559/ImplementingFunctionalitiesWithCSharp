@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{733CB6FE-DB60-4E5D-852A-DB4658E5379D}</ProjectGuid>
+    <ProjectGuid>{95B27F9A-AFAA-473E-8C12-54BBF3228A9A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MultitabledDataSetApp</RootNamespace>
     <AssemblyName>MultitabledDataSetApp</AssemblyName>
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoLotDAL">
-      <HintPath>..\..\21\AutoLotDAL\bin\Debug\AutoLotDAL.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
