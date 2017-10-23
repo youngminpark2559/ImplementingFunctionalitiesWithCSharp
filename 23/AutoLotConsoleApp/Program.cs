@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace AutoLotConsoleApp
 {
@@ -180,7 +181,11 @@ namespace AutoLotConsoleApp
         {
             using (var context = new AutoLotEntities())
             {
+                //Create a new Car object and assign a carId to CarId, which I want to delete in DB.
                 Car carToDelete = new Car() { CarId = carId };
+
+                //Set EntityState of carToDelete object to Deleted.
+                //So far, I didn't trip to the DB, meaning good performance.
                 context.Entry(carToDelete).State = EntityState.Deleted;
                 try
                 {
