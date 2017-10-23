@@ -32,6 +32,8 @@ namespace AutoLotConsoleApp
                     context.SaveChanges();
 
                     // On a successful save, EF populates the database generated identity field.
+                    //The CarId of the new record is showing.
+                    //EF executes a SELECT statement on behalf of myself to get CarId value, even if I don't do anything to get that value from DB
                     return car.CarId;
                 }
                 catch (Exception ex)
@@ -43,11 +45,32 @@ namespace AutoLotConsoleApp
         }
 
 
+        //Added a helper PrintAllInventory() to show all records in Inventory table with being helped by ToString() of Car class.
+        private static void PrintAllInventory()
+        {
+            // Select all items from the Inventory table of AutoLot,
+            // and print out the data using our custom ToString()
+            // of the Car entity class.
+            using (var context = new AutoLotEntities())
+            {
+                //Car class is decorated with [Table("Inventory")]
+                //One Inventory object means one row of records corresponding to each columns,
+                //for example, Inventory object 1 = Id=1, Name=Bim, Color=White, Make=BMW
+                //DbSet<Inventory> is consists of multiple Inventory objects.
+                foreach (Car c in context.Cars)
+                {
+                    WriteLine(c);
+                }
+            }
+        }
+
+
         static void Main(string[] args)
         {
             WriteLine("***** Fun with ADO.NET EF *****\n");
-            int carId = AddNewRecord();
-            WriteLine(carId);
+            //int carId = AddNewRecord();
+            //WriteLIne(carId);
+            PrintAllInventory();
         }
     }
 }
