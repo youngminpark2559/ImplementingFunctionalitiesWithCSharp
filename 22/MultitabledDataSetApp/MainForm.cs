@@ -68,8 +68,21 @@ namespace MultitabledDataSetApp
         private SqlDataAdapter _ordersTableAdapter;
 
 
+        //Added a BuildTableRelationship()
+        private void BuildTableRelationship()
+        {
+            //Create a DataRelation object CustomerOrder defining Customer-Order data relation.
+            DataRelation dr = new DataRelation("CustomerOrder",
+                _autoLotDs.Tables["Customers"].Columns["CustID"],
+                _autoLotDs.Tables["Orders"].Columns["CustID"]);
+            _autoLotDs.Relations.Add(dr);
 
-
+            //Create a DataRelation object InventoryOrder defining Inventory-Order data relation.
+            dr = new DataRelation("InventoryOrder",
+                _autoLotDs.Tables["Inventory"].Columns["CarID"],
+                _autoLotDs.Tables["Orders"].Columns["CarID"]);
+            _autoLotDs.Relations.Add(dr);
+        }
 
 
     }
