@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace AutoLotConsoleApp
 {
@@ -83,6 +84,7 @@ namespace AutoLotConsoleApp
 
         //Updated a PrintAllInventory() with using LINQ to submit query in EF.
         //It's powerful and convinient when LINQ is used in EF when doing task.
+        //LINQ is converted into SQL query which creates a DataReader, and returns records.
         private static void PrintAllInventory()
         {
             using (var context = new AutoLotEntities())
@@ -93,14 +95,114 @@ namespace AutoLotConsoleApp
                 }
             }
 
+        }
 
 
-            static void Main(string[] args)
+        //private static void FunWithLinqQueries()
+        //{
+        //    using (var context = new AutoLotEntities())
+        //    {
+        //        // Get a projection of new data by using anonymous type object.
+        //        // a`[] = {{Blue, BMW}, {White, VW}, .. }
+        //        var colorsMakes = from item in context.Cars
+        //                          select new { item.Color, item.Make };
+
+        //        foreach (var item in colorsMakes)
+        //        {
+        //            WriteLine(item);
+        //        }
+
+        //        // Get only items where Color == "Black"
+        //        var blackCars = from item in context.Cars where item.Color == "Black" select item;
+        //        foreach (var item in blackCars)
+        //        {
+        //            WriteLine(item);
+        //        }
+        //    }
+        //}
+
+        private static void FunWithLinqQueries()
+        {
+            using (var context = new AutoLotEntities())
+            {
+                // Get all data from the Inventory table.
+                // Could also write:
+                // var allData = (from item in context.Cars select item).ToArray();
+                var allData = context.Cars.ToArray();
+
+                // Get a projection of new data by using anonymous type object.
+                // a`[] = {{Blue, BMW}, {White, VW}, .. }
+                var colorsMakes = from item in context.Cars
+                                  select new { item.Color, item.Make };
+
+                foreach (var item in colorsMakes)
+                {
+                    WriteLine(item);
+                }
+
+                // Get only items where Color == "Black"
+                var blackCars = from item in context.Cars where item.Color == "Black" select item;
+                foreach (var item in blackCars)
+                {
+                    WriteLine(item);
+                }
+            }
+        }
+
+
+
+
+        //Added a helper RemoveRecord(int carId) to delete record in DB by marking "Deleted" to EntityState on an object from DbSet<Car> and then call context.SaveChanges()
+        private static void RemoveRecord(int carId)
+        {
+            // Find a car to delete by primary key.
+            using (var context = new AutoLotEntities())
+            {
+                // See if we have it, and if we have it, assign that Car object to carToDelete.
+                Car carToDelete = context.Cars.Find(carId);
+
+                if (carToDelete != null)
+                {
+                    //Delete a Car object which I found above with carId from DbSet<Cars>
+                    context.Cars.Remove(carToDelete);
+
+                    //Try to delete records corresponding to above object in DB.
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
+
+
+        //Added a helper RemoveRecordUsingEntityState(int carId) to delete records in DB by marking EntityState on an object which I want to delete, is found by carId.
+        private static void RemoveRecordUsingEntityState(int carId)
+        {
+            using (var context = new AutoLotEntities())
+            {
+                Car carToDelete = new Car() { CarId = carId };
+                context.Entry(carToDelete).State = EntityState.Deleted;
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    WriteLine(ex);
+                }
+            }
+        }
+
+
+
+        static void Main(string[] args)
         {
             WriteLine("***** Fun with ADO.NET EF *****\n");
-            //int carId = AddNewRecord();
-            //WriteLIne(carId);
-            PrintAllInventory();
+            int carId = AddNewRecord();
+            RemoveRecord(carId);
+            //WriteLine(carId);
+            //PrintAllInventory();
+            //FunWithLinqQueries();
         }
     }
 }
