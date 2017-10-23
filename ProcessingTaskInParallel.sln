@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "21", "21", "{634BA868-5E9A-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLotDAL", "21\AutoLotDAL\AutoLotDAL.csproj", "{CAA24C7A-E2BE-4C90-890E-743E803169E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryDALDisconnectedGUI", "22\InventoryDALDisconnectedGUI\InventoryDALDisconnectedGUI.csproj", "{7F430657-6A43-4C60-BD83-C1D146DD3F65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{CAA24C7A-E2BE-4C90-890E-743E803169E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAA24C7A-E2BE-4C90-890E-743E803169E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAA24C7A-E2BE-4C90-890E-743E803169E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F430657-6A43-4C60-BD83-C1D146DD3F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F430657-6A43-4C60-BD83-C1D146DD3F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F430657-6A43-4C60-BD83-C1D146DD3F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F430657-6A43-4C60-BD83-C1D146DD3F65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{48124F78-B67B-411D-BBD3-C6FEA73EA4CA} = {210A2B92-8633-47BB-A303-1F69F81D91D7}
 		{CAA24C7A-E2BE-4C90-890E-743E803169E3} = {634BA868-5E9A-45FC-870C-6C76A5C79A2F}
+		{7F430657-6A43-4C60-BD83-C1D146DD3F65} = {210A2B92-8633-47BB-A303-1F69F81D91D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1041F7D3-B2CB-4344-A25C-F958C26B8182}
