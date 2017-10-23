@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryDALDisconnectedGUI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultitabledDataSetApp", "22\MultitabledDataSetApp\MultitabledDataSetApp.csproj", "{733CB6FE-DB60-4E5D-852A-DB4658E5379D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridViewDataDesigner", "22\DataGridViewDataDesigner\DataGridViewDataDesigner.csproj", "{B4B299C4-53C4-4BDB-9639-576C1AED9E45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{733CB6FE-DB60-4E5D-852A-DB4658E5379D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{733CB6FE-DB60-4E5D-852A-DB4658E5379D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{733CB6FE-DB60-4E5D-852A-DB4658E5379D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B299C4-53C4-4BDB-9639-576C1AED9E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B299C4-53C4-4BDB-9639-576C1AED9E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B299C4-53C4-4BDB-9639-576C1AED9E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B299C4-53C4-4BDB-9639-576C1AED9E45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{CAA24C7A-E2BE-4C90-890E-743E803169E3} = {634BA868-5E9A-45FC-870C-6C76A5C79A2F}
 		{7F430657-6A43-4C60-BD83-C1D146DD3F65} = {210A2B92-8633-47BB-A303-1F69F81D91D7}
 		{733CB6FE-DB60-4E5D-852A-DB4658E5379D} = {210A2B92-8633-47BB-A303-1F69F81D91D7}
+		{B4B299C4-53C4-4BDB-9639-576C1AED9E45} = {210A2B92-8633-47BB-A303-1F69F81D91D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1041F7D3-B2CB-4344-A25C-F958C26B8182}
