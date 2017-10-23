@@ -199,6 +199,32 @@ namespace AutoLotConsoleApp
         }
 
 
+        //Added a helper UpdateRecord(int carId) to update values in DB.
+        private static void UpdateRecord(int carId)
+        {
+            using (var context = new AutoLotEntities())
+            {
+                //Find a specific car object which I want to delete, is found by primary key.
+                Car carToUpdate = context.Cars.Find(carId);
+
+                if (carToUpdate != null)
+                {
+                    //EntityState before update
+                    WriteLine(context.Entry(carToUpdate).State);
+
+                    //Set a new value.
+                    carToUpdate.Color = "Blue";
+
+                    //EntityState after update object's value in carToUpdate.Color
+                    WriteLine(context.Entry(carToUpdate).State);
+
+                    //Save changes to the DB.
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
 
         static void Main(string[] args)
         {
