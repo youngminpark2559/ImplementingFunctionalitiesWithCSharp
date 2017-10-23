@@ -15,7 +15,7 @@ namespace AutoLotConsoleApp.EF
         //DbSet<TEntity> property is for each table in DB.
         public virtual DbSet<CreditRisk> CreditRisks { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
 
         //I overrides OnModelCreating() to use FluentAPI to define relationship between tables, columns property, etc.
@@ -34,9 +34,9 @@ namespace AutoLotConsoleApp.EF
                 .WithRequired(e => e.Customer)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Inventory>()
+            modelBuilder.Entity<Car>()
                 .HasMany(e => e.Orders)
-                .WithRequired(e => e.Inventory)
+                .WithRequired(e => e.Car)
                 .WillCascadeOnDelete(false);
         }
     }
