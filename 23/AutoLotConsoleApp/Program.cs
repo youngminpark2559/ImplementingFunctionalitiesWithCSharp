@@ -66,22 +66,36 @@ namespace AutoLotConsoleApp
         //    }
         //}
 
-        //Added an updated helper PrintAllInventory() to fill DbSet with SQL query with using EF.
-        //It can be implemented either in inline or stored procedures.
+        ////Added an updated helper PrintAllInventory() to fill DbSet with SQL query with using EF.
+        ////It can be implemented either in inline or stored procedures.
+        //private static void PrintAllInventory()
+        //{
+        //    using (var context = new AutoLotEntities())
+        //    {
+        //        //Uses inline SQL query
+        //        foreach (Car c in context.Cars.SqlQuery("Select CarId,Make,Color,PetName as CarNickName from Inventory where Make = @p0", "BMW"))
+        //        {
+        //            WriteLine(c);
+        //        }
+        //    }
+        //}
+
+
+        //Updated a PrintAllInventory() with using LINQ to submit query in EF.
+        //It's powerful and convinient when LINQ is used in EF when doing task.
         private static void PrintAllInventory()
         {
             using (var context = new AutoLotEntities())
             {
-                //Uses inline SQL query
-                foreach (Car c in context.Cars.SqlQuery("Select CarId,Make,Color,PetName as CarNickName from Inventory where Make = @p0", "BMW"))
+                foreach (Car c in context.Cars.Where(c => c.Make == "BMW"))
                 {
                     WriteLine(c);
                 }
             }
-        }
 
 
-        static void Main(string[] args)
+
+            static void Main(string[] args)
         {
             WriteLine("***** Fun with ADO.NET EF *****\n");
             //int carId = AddNewRecord();
