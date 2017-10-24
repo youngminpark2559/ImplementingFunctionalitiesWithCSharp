@@ -1,6 +1,4 @@
-﻿
-
-using AutoLotDAL.EF;
+﻿using AutoLotDAL.EF;
 using System;
 using static System.Console;
 using System.Collections.Generic;
@@ -26,6 +24,8 @@ namespace AutoLotTestDrive
             AddNewRecords(new List<Inventory> { car1, car2 });
             UpdateRecord(car1.CarId);
             PrintAllInventory();
+            ShowAllOrders();
+            ShowAllOrdersEagerlyFetched();
             ReadLine();
         }
 
@@ -104,8 +104,28 @@ namespace AutoLotTestDrive
             }
         }
 
+        //Add ShowAllOrdersEagerlyFetched() to retrieve data including data with which are related to Order table(Customer, Car) by using Eager loading(All related data with one query).
+        private static void ShowAllOrdersEagerlyFetched()
+        {
+            using (var context = new AutoLotEntities())
+            {
+                WriteLine("*********** Pending Orders ***********");
+                //AutoLotEntities Orders property
+                var orders = context.Orders
+                  //Order class Customer property
+                  .Include(x => x.Customer)
+                  //Order class Car property
+                  .Include(y => y.Car)
+                  //Submit query to DB and get all data and assign them to orders.
+                  .ToList();
 
-
+                foreach (var itm in orders)
+                {
+                    //Order->Customer property->Customer class->FullName property.
+                    WriteLine($"->{itm.Customer.FullName} is waiting on {itm.Car.PetName}");
+                }
+            }
+        }
 
     }
 }
