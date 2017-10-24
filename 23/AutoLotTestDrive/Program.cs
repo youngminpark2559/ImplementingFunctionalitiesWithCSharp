@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoLotDAL.Repos;
 using AutoLotDAL.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace AutoLotTestDrive
 {
@@ -126,6 +127,47 @@ namespace AutoLotTestDrive
                 }
             }
         }
+
+
+
+
+
+
+
+
+        //c Add MakeCustomerARisk(Customer customer) to move an customer object to CreditRisk table and remove from Customer table.
+        //This is for transaction.
+        //An customer object is moved to CreditRisk table and removed from Customer table
+        private static CreditRisk MakeCustomerARisk(Customer customer)
+        {
+            using (var context = new AutoLotEntities())
+            {
+                context.Customers.Attach(customer);
+                context.Customers.Remove(customer);
+                var creditRisk = new CreditRisk()
+                {
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName
+                };
+                context.CreditRisks.Add(creditRisk);
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    WriteLine(ex);
+                }
+                catch (Exception ex)
+                {
+                    WriteLine(ex);
+                }
+                return creditRisk;
+            }
+        }
+
+
+
 
     }
 }
