@@ -12,7 +12,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace AutoLotDAL.Repos
 {
-    public abstract class BaseRepo<T> where T : class, new()
+    public abstract class BaseRepo<T> : IDisposable where T:class,new()
     {
         //Creating my context class affects bad to performance,
         //because it exchanges signals between base DbContext and database.
