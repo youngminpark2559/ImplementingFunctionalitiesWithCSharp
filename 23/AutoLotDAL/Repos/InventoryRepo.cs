@@ -17,17 +17,25 @@ namespace AutoLotDAL.Repos
 
 
 
-
+        //c Update Delete(), DeleteAsync() in each *Repo.cs to accept byte[] timeStamp as a parameter,
+        //which will be added to conditional SQL query statement such as WHERE clause.
         //For delete record from Inventory table, based on CarId which client put to delete.
-        public int Delete(int id)
+        public int Delete(int id, byte[] timeStamp)
         {
-            Context.Entry(new Inventory() { CarId = id }).State = EntityState.Deleted;
+            Context.Entry(new Inventory()
+            {
+                CarId = id,
+                Timestamp = timeStamp
+            }).State = EntityState.Deleted;
             return SaveChanges();
         }
-
-        public Task<int> DeleteAsync(int id)
+        public Task<int> DeleteAsync(int id, byte[] timeStamp)
         {
-            Context.Entry(new Inventory() { CarId = id }).State = EntityState.Deleted;
+            Context.Entry(new Inventory()
+            {
+                CarId = id,
+                Timestamp = timeStamp
+            }).State = EntityState.Deleted;
             return SaveChangesAsync();
         }
     }
