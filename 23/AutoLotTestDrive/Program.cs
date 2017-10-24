@@ -22,7 +22,9 @@ namespace AutoLotTestDrive
             AddNewRecord(car1);
             AddNewRecord(car2);
             AddNewRecords(new List<Inventory> { car1, car2 });
+            UpdateRecord(car1.CarId);
             PrintAllInventory();
+            ReadLine();
         }
 
 
@@ -62,5 +64,31 @@ namespace AutoLotTestDrive
                 repo.AddRange(cars);
             }
         }
+
+
+
+
+        //Added a UpdateRecord(int carId) updating record in DB, using EF and repository pattern.
+        private static void UpdateRecord(int carId)
+        {
+            using (var repo = new InventoryRepo())
+            {
+                //InventoryRepo object -> call GetOne() in IRepo? -> call GetOne() in BaseRepo -> get an object which was found by carId, is to be updated.
+                var carToUpdate = repo.GetOne(carId);
+
+                if (carToUpdate != null)
+                {
+                    WriteLine("Before change: " + repo.Context.Entry(carToUpdate).State);
+                    carToUpdate.Color = "Blue";
+                    WriteLine("After change: " + repo.Context.Entry(carToUpdate).State);
+                    repo.Save(carToUpdate);
+                    WriteLine("After save: " + repo.Context.Entry(carToUpdate).State);
+                }
+            }
+        }
+
+
+
+
     }
 }
