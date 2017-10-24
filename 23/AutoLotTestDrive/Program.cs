@@ -26,7 +26,7 @@ namespace AutoLotTestDrive
     {
         static void Main(string[] args)
         {
-            Database.SetInitializer(new DataInitializer());
+            //Database.SetInitializer(new DataInitializer());
             //WriteLine("***** Fun with ADO.NET EF Code First *****\n");
             //var car1 = new Inventory() { Make = "Yugo", Color = "Brown", PetName = "Brownie" };
             //var car2 = new Inventory() { Make = "SmartCar", Color = "Brown", PetName = "Shorty" };
@@ -180,6 +180,12 @@ namespace AutoLotTestDrive
                     LastName = customer.LastName
                 };
                 context.CreditRisks.Add(creditRisk);
+                var creditRiskDupe = new CreditRisk()
+                {
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName
+                };
+                context.CreditRisks.Add(creditRiskDupe);
                 try
                 {
                     context.SaveChanges();
@@ -188,10 +194,7 @@ namespace AutoLotTestDrive
                 {
                     WriteLine(ex);
                 }
-                catch (Exception ex)
-                {
-                    WriteLine(ex);
-                }
+
                 return creditRisk;
             }
         }

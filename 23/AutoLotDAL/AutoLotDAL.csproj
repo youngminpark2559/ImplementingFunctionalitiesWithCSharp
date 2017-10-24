@@ -51,9 +51,9 @@
   <ItemGroup>
     <Compile Include="EF\AutoLotEntities.cs" />
     <Compile Include="EF\DataInitializer.cs" />
-    <Compile Include="Migrations\201710240853588_InitialCreate.cs" />
-    <Compile Include="Migrations\201710240853588_InitialCreate.Designer.cs">
-      <DependentUpon>201710240853588_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201710241032594_Initial.cs" />
+    <Compile Include="Migrations\201710241032594_Initial.Designer.cs">
+      <DependentUpon>201710241032594_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CreditRisk.cs" />
@@ -74,8 +74,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710240853588_InitialCreate.resx">
-      <DependentUpon>201710240853588_InitialCreate.cs</DependentUpon>
+    <Content Include="TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710241032594_Initial.resx">
+      <DependentUpon>201710241032594_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
