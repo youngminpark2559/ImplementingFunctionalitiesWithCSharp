@@ -1,4 +1,6 @@
-﻿using AutoLotDAL.EF;
+﻿
+
+using AutoLotDAL.EF;
 using System;
 using static System.Console;
 using System.Collections.Generic;
@@ -83,6 +85,21 @@ namespace AutoLotTestDrive
                     WriteLine("After change: " + repo.Context.Entry(carToUpdate).State);
                     repo.Save(carToUpdate);
                     WriteLine("After save: " + repo.Context.Entry(carToUpdate).State);
+                }
+            }
+        }
+
+        //c Added ShowAllOrders() retrieving data from tables(Order, Inventory) which are related to Order table by using navigation property.
+        //Use navigation property to retrieve data from tables(Order, Inventory) which are related to Order table.
+        //In other word, Order class has navigation properties whose types are DbSet<Order>, DbSet<Inventory>
+        private static void ShowAllOrders()
+        {
+            using (var repo = new OrderRepo())
+            {
+                WriteLine("*********** Pending Orders ***********");
+                foreach (var itm in repo.GetAll())
+                {
+                    WriteLine($"->{itm.Customer.FullName} is waiting on {itm.Car.PetName}");
                 }
             }
         }
