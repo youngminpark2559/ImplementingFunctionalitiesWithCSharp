@@ -1,7 +1,4 @@
-﻿
-
-
-using AutoLotDAL.EF;
+﻿using AutoLotDAL.EF;
 using System;
 using static System.Console;
 using System.Collections.Generic;
@@ -224,6 +221,45 @@ namespace AutoLotTestDrive
 
 
 
+
+
+        private static void UpdateRecordWithConcurrency()
+        {
+            var car = new Inventory()
+            { Make = "Yugo", Color = "Brown", PetName = "Brownie" };
+            AddNewRecord(car);
+            var repo1 = new InventoryRepo();
+            var car1 = repo1.GetOne(car.CarId);
+            car1.PetName = "Updated";
+
+            var repo2 = new InventoryRepo();
+            var car2 = repo2.GetOne(car.CarId);
+            car2.Make = "Nissan";
+
+            repo1.Save(car1);
+            try
+            {
+                repo2.Save(car2);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                WriteLine(ex);
+            }
+            RemoveRecordById(car1.CarId, car1.Timestamp);
+        }
+
+
+
+
+
+
+        private static void RemoveRecordById(int carId, byte[] timeStamp)
+        {
+            using (var repo = new InventoryRepo())
+            {
+                repo.Delete(carId, timeStamp);
+            }
+        }
 
     }
 }

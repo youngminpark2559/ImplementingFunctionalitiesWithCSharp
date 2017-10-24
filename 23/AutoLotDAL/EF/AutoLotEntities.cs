@@ -1,8 +1,10 @@
 namespace AutoLotDAL.EF
 {
+    using AutoLotDAL.Interception;
     using AutoLotDAL.Models;
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure.Interception;
     using System.Linq;
 
     public class AutoLotEntities : DbContext
@@ -13,9 +15,10 @@ namespace AutoLotDAL.EF
         // 
         // If you wish to target a different database and/or database provider, modify the 'AutoLotEntities' 
         // connection string in the application configuration file.
-        public AutoLotEntities()
-            : base("name=AutoLotConnection")
+        public AutoLotEntities() : base("name=AutoLotConnection")
         {
+            //Register the Interception.
+            DbInterception.Add(new ConsoleWriterInterceptor());
         }
 
         public virtual DbSet<CreditRisk> CreditRisks { get; set; }
