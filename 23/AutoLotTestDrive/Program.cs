@@ -27,7 +27,25 @@ namespace AutoLotTestDrive
             PrintAllInventory();
             ShowAllOrders();
             ShowAllOrdersEagerlyFetched();
-            ReadLine();
+
+            //c Add invoking MakeCustomerARisk(), PrintAllCustomersAndCreditRisks() in Main() to test transaction.
+            WriteLine("***** Fun with ADO.NET EF Code First Transaction *****\n");
+            PrintAllCustomersAndCreditRisks();
+
+            //Get one CustomerRepo object.
+            var customerRepo = new CustomerRepo();
+
+            //Get a customer whose Id is 4.
+            var customer = customerRepo.GetOne(4);
+
+            //Set EntityState of this object to Detached.
+            customerRepo.Context.Entry(customer).State = EntityState.Detached;
+
+            //Move this customer to CreditRisk table with removing it from Customer table.
+            var risk = MakeCustomerARisk(customer);
+
+            //Check the change.
+            PrintAllCustomersAndCreditRisks();
         }
 
 
@@ -163,6 +181,29 @@ namespace AutoLotTestDrive
                     WriteLine(ex);
                 }
                 return creditRisk;
+            }
+        }
+
+
+
+
+        private static void PrintAllCustomersAndCreditRisks()
+        {
+            WriteLine("*********** Customers ***********");
+            using (var repo = new CustomerRepo())
+            {
+                foreach (var cust in repo.GetAll())
+                {
+                    WriteLine($"->{cust.FirstName} {cust.LastName} is a Customer.");
+                }
+            }
+            WriteLine("*********** Credit Risks ***********");
+            using (var repo = new CreditRiskRepo())
+            {
+                foreach (var risk in repo.GetAll())
+                {
+                    WriteLine($"->{risk.FirstName} {risk.LastName} is a Credit Risk!");
+                }
             }
         }
 
