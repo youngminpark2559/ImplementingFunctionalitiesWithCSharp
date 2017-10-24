@@ -1,4 +1,7 @@
-﻿using AutoLotDAL.EF;
+﻿
+
+
+using AutoLotDAL.EF;
 using System;
 using static System.Console;
 using System.Collections.Generic;
@@ -10,6 +13,13 @@ using AutoLotDAL.Repos;
 using AutoLotDAL.Models;
 using System.Data.Entity.Infrastructure;
 
+
+//The manner EF checks and syncs betwenn entities and database.
+//1. EF inspects _MigrationHitory
+//2. EF compares hashes of current models to the most recent hash in tables.
+
+
+
 namespace AutoLotTestDrive
 {
     class Program
@@ -17,35 +27,37 @@ namespace AutoLotTestDrive
         static void Main(string[] args)
         {
             Database.SetInitializer(new DataInitializer());
-            WriteLine("***** Fun with ADO.NET EF Code First *****\n");
-            var car1 = new Inventory() { Make = "Yugo", Color = "Brown", PetName = "Brownie" };
-            var car2 = new Inventory() { Make = "SmartCar", Color = "Brown", PetName = "Shorty" };
-            AddNewRecord(car1);
-            AddNewRecord(car2);
-            AddNewRecords(new List<Inventory> { car1, car2 });
-            UpdateRecord(car1.CarId);
+            //WriteLine("***** Fun with ADO.NET EF Code First *****\n");
+            //var car1 = new Inventory() { Make = "Yugo", Color = "Brown", PetName = "Brownie" };
+            //var car2 = new Inventory() { Make = "SmartCar", Color = "Brown", PetName = "Shorty" };
+            //AddNewRecord(car1);
+            //AddNewRecord(car2);
+            //AddNewRecords(new List<Inventory> { car1, car2 });
+            //UpdateRecord(car1.CarId);
+            //PrintAllInventory();
+            //ShowAllOrders();
+            //ShowAllOrdersEagerlyFetched();
+
+            ////c Add invoking MakeCustomerARisk(), PrintAllCustomersAndCreditRisks() in Main() to test transaction.
+            //WriteLine("***** Fun with ADO.NET EF Code First Transaction *****\n");
+            //PrintAllCustomersAndCreditRisks();
+
+            ////Get one CustomerRepo object.
+            //var customerRepo = new CustomerRepo();
+
+            ////Get a customer whose Id is 4.
+            //var customer = customerRepo.GetOne(4);
+
+            ////Set EntityState of this object to Detached.
+            //customerRepo.Context.Entry(customer).State = EntityState.Detached;
+
+            ////Move this customer to CreditRisk table with removing it from Customer table.
+            //var risk = MakeCustomerARisk(customer);
+
+            ////Check the change.
+            //PrintAllCustomersAndCreditRisks();
+
             PrintAllInventory();
-            ShowAllOrders();
-            ShowAllOrdersEagerlyFetched();
-
-            //c Add invoking MakeCustomerARisk(), PrintAllCustomersAndCreditRisks() in Main() to test transaction.
-            WriteLine("***** Fun with ADO.NET EF Code First Transaction *****\n");
-            PrintAllCustomersAndCreditRisks();
-
-            //Get one CustomerRepo object.
-            var customerRepo = new CustomerRepo();
-
-            //Get a customer whose Id is 4.
-            var customer = customerRepo.GetOne(4);
-
-            //Set EntityState of this object to Detached.
-            customerRepo.Context.Entry(customer).State = EntityState.Detached;
-
-            //Move this customer to CreditRisk table with removing it from Customer table.
-            var risk = MakeCustomerARisk(customer);
-
-            //Check the change.
-            PrintAllCustomersAndCreditRisks();
         }
 
 
