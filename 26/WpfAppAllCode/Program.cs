@@ -56,16 +56,21 @@ namespace WpfAppAllCode
         //Event handler.
         static void AppStartUp(object sender, StartupEventArgs e)
         {
-            // Create a Window object.
-            Window mainWindow = new Window();
+            //// Create a Window object.
+            //Window mainWindow = new Window();
 
-            // Set some basic properties by Window object.
-            mainWindow.Title = "My First WPF App!";
-            mainWindow.Height = 200;
-            mainWindow.Width = 300;
-            mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //// Set some basic properties by Window object.
+            //mainWindow.Title = "My First WPF App!";
+            //mainWindow.Height = 200;
+            //mainWindow.Width = 300;
+            //mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //mainWindow.Show();
 
-            mainWindow.Show();
+
+
+            // Create a MainWindow object.
+            var main = new MainWindow("My better WPF App!", 200, 300);
+            main.Show();
         }
 
 
