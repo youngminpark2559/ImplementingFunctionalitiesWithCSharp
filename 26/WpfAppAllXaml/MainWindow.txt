@@ -1,0 +1,32 @@
+<!-- c Add MainWindow.xaml and MyApp.xaml whose roles are each class containing Main() doing role as an entry point and other class containing functionality such as method. -->
+
+<!-- Here is your Window definition -->
+<!-- root element Window uses Class attribute which is used to name C# class which will be created when this XAML file is executed.-->
+<!--x: this is tag prefix. -->
+<Window x:Class="WpfAppAllXaml.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  <!-- x is assigned to the string to create an XML namespace definition. -->
+  <!-- When I want to reference an item which is defined by http://schemas.microsoft.com/winfx/2006/xaml/presentation XML namespace, I should prefix x: token -->
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  Title="A Window built using 100% XAML"
+  Height="200" Width="300"
+  WindowStartupLocation ="CenterScreen">
+  <Windows.Content>
+    <!-- This window has a single button as content -->
+    <Button x:Name="btnExitApp" Width="133" Height="24"
+          Content = "Close Window" Click ="btnExitApp_Clicked"/>
+  </Window.Content>
+ 
+<!-- The implementation of your button's Click event handler! -->
+<!-- <x:Code> element allows me to create event handler and method of this class, within xaml file. -->
+<!-- But writing codes for functionality here is not recommended in terms of separation of concerns between UI markup and functionality logic. -->
+<x:Code>
+<!-- This prevents XML parsers from attempting to directly interpret the data -->
+  <![CDATA[
+    private void btnExitApp_Clicked(object sender, RoutedEventArgs e)
+    {
+      this.Close();
+    }
+  ]]>
+ </x:Code>
+</Window>
