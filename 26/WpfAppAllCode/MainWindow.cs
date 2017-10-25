@@ -14,6 +14,7 @@ using System.Windows.Controls;
 //c Add Closing, Closed events of Window object, 
 //and their event handlers(MainWindow_Closing, MainWindow_Closed).
 
+
 namespace WpfAppAllCode
 {
     //This class can be used in strongly typed type.
