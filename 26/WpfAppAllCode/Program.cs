@@ -67,6 +67,18 @@ namespace WpfAppAllCode
             //mainWindow.Show();
 
 
+            //Check the incoming command-line arguments and see if they specified a flag for /GODMODE.
+            Application.Current.Properties["GodMode"] = false;
+            foreach (string arg in e.Args)
+            {
+                if (arg.ToLower() == "/godmode")
+                {
+                    Application.Current.Properties["GodMode"] = true;
+                    break;
+                }
+            }
+
+
 
             // Create a MainWindow object.
             var main = new MainWindow("My better WPF App!", 200, 300);
@@ -74,6 +86,11 @@ namespace WpfAppAllCode
         }
 
 
+
+
+
+
+        
         static void AppExit(object sender, ExitEventArgs e)
         {
             MessageBox.Show("App has exited");
