@@ -53,6 +53,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "26", "26", "{3B8827E7-ACF9-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppAllCode", "26\WpfAppAllCode\WpfAppAllCode.csproj", "{1FE77587-A953-4DFF-9786-BC510B473847}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WpfAppAllXaml", "WpfAppAllXaml", "{9F75D4DD-B516-48F9-A4BD-B569AE130633}"
+	ProjectSection(SolutionItems) = preProject
+		MainWindow.txt = MainWindow.txt
+		MyApp.txt = MyApp.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +161,7 @@ Global
 		{CEE0FDF9-59BD-47F0-8CD9-C916D2026C8E} = {A92AB5E5-5CF0-4E36-9DA2-B49AA083EC5E}
 		{D9B4D36D-0AAD-4072-8866-74B99AF471BD} = {4558D60F-7247-4A42-9B68-7D7BAD2CC7BB}
 		{1FE77587-A953-4DFF-9786-BC510B473847} = {3B8827E7-ACF9-4734-9FC3-2F4ED0B71DB8}
+		{9F75D4DD-B516-48F9-A4BD-B569AE130633} = {3B8827E7-ACF9-4734-9FC3-2F4ED0B71DB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1041F7D3-B2CB-4344-A25C-F958C26B8182}
