@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 
 //c Add a Console project WpfAppAllCode to make a simple WPF application, written without XAML.
-//c Add explanation comment for [STAThread]
+//c Add explanation comment for [STAThread].
 
 namespace WpfAppAllCode
 {
