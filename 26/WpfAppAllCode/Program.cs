@@ -7,6 +7,7 @@ using System.Windows;
 
 //c Add a Console project WpfAppAllCode to make a simple WPF application, written without XAML.
 //c Add explanation comment for [STAThread].
+//c Add codes using the manner of "specifying the underlying delegates by names" which can be used alternatively with the manner of "method group conversion syntax".
 
 namespace WpfAppAllCode
 {
@@ -22,13 +23,34 @@ namespace WpfAppAllCode
         {
             Program app = new Program();
 
-            // Handle the Startup and Exit events by each event handler(AppStartUp, AppExit),
-            // and then run the application.
+            // Handle the events(Startup, Exit) by each event handler(AppStartUp, AppExit),
+            // with using method group conversion syntax which is shorthand notation removed the task of specifying the underlying delegates used by a specific event. 
             app.Startup += AppStartUp;
             app.Exit += AppExit;
 
-            // Fires the Startup event.
+            // Run the application by firing the Startup event.
             app.Run();
+
+
+
+
+
+
+            //// This way is that I specify the underlying delegates by names.
+            //Program app = new Program();
+
+            ////Startup event works with StartupEventHandler delegate 
+            ////which is defined in System.Windows namespace of PresentationFramework.dll,
+            ////and can only point to method 
+            ////which takes 1st parameter as Object type, 2nd parameter as StartupEventArgs type.
+            //app.Startup += new StartupEventHandler(AppStartUp);
+            //app.Exit += new ExitEventHandler(AppExit);
+            //app.Run();
+
+
+
+
+
         }
 
         //Event handler.
