@@ -14,7 +14,9 @@ using System.Windows.Controls;
 //c Add Closing, Closed events of Window object, 
 //and their event handlers(MainWindow_Closing, MainWindow_Closed).
 
-//c Add Mouse event for capturing mouse movement, which is dealt with MainWindow_MouseMove event handler which calls GetPosition() within its method, which gets (x, y) value which is relative to a UI element on the window.
+//c Add MouseMove event for capturing mouse movement, which is dealt with MainWindow_MouseMove event handler which calls GetPosition() within its method, which gets (x, y) value which is relative to a UI element on the window.
+
+//c Add KeyDown event for capturing key press, which is dealt with MainWindow_KeyDown event handler which displays key press on the Exit button.
 
 namespace WpfAppAllCode
 {
@@ -50,11 +52,14 @@ namespace WpfAppAllCode
             //This event is fired when just after the program is closed, and corresponding event handler is invoked.
             this.Closed += MainWindow_Closed;
 
-            
+
 
             //MouseMove event is one of the events which capture mouse movement, such as MouseMove, MouseUp, MouseDown, MouseEnter, MouseLeave, etc
             //MouseMove event is dealt with MainWindow_MouseMove event handler which calls GetPosition() within its method, which gets (x, y) value which is relative to a UI element on the window.
             this.MouseMove += MainWindow_MouseMove;
+
+
+            this.KeyDown += MainWindow_KeyDown;
         }
 
 
@@ -96,6 +101,13 @@ namespace WpfAppAllCode
         {
             // Set the title of the window to the current (x, y) of the mouse.
             this.Title = e.GetPosition(this).ToString();
+        }
+
+
+        private void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            // Display key press on the button.
+            btnExitApp.Content = e.Key.ToString();
         }
     }
 }
