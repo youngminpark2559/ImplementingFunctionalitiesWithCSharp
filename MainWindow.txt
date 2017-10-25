@@ -1,4 +1,4 @@
-<!-- c Add MainWindow.xaml and MyApp.xaml whose roles are each Main() doing role as entry point and other class containing functionality such as method. -->
+<!-- c Add MainWindow.xaml and MyApp.xaml whose roles are each class containing Main() doing role as an entry point and other class containing functionality such as method. -->
 
 <!-- Here is your Window definition -->
 <!-- root element Window uses Class attribute which is used to name C# class which will be created when this XAML file is executed.-->

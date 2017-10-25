@@ -1,0 +1,22 @@
+<!-- This WpfAppAllXaml.csproj file is needed to transform MainWindow.xaml and MyApp.xaml files to C# codes and to compile transformed C# codes to .NET assembly by msbuild.exe. CSharp compiler(csc.exe) doesn't know the grammar of XAML. -->
+
+<Project DefaultTargets="Build"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <RootNamespace>WpfAppAllXaml</RootNamespace>
+    <AssemblyName>WpfAppAllXaml</AssemblyName>
+    <OutputType>winexe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XAML" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="MyApp.xaml" />
+    <Page Include="MainWindow.xaml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

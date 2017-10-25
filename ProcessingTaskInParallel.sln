@@ -57,6 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WpfAppAllXaml", "WpfAppAllX
 	ProjectSection(SolutionItems) = preProject
 		MainWindow.txt = MainWindow.txt
 		MyApp.txt = MyApp.txt
+		WpfAppAllXaml.txt = WpfAppAllXaml.txt
 	EndProjectSection
 EndProject
 Global
