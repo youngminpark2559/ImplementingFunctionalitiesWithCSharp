@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 //c Add a Window_Loaded() event handler method for Loaded event.
+
 //c Add a btnViewXaml_Click() event handler method for Click event, which when client clicks the button, saves txtXamlData.Text to a physical file named YourXaml.xaml. And loads that xaml file and shows the contents on ShowDialog().
 
 namespace MyXamlPad
@@ -61,6 +62,9 @@ namespace MyXamlPad
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            // Write out the data in the text block to a local *.xaml file.
+            File.WriteAllText("YourXaml.xaml", txtXamlData.Text);
+            Application.Current.Shutdown();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
