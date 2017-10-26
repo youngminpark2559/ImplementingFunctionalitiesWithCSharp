@@ -19,6 +19,14 @@
 				<MenuItem Header ="_Spelling Hints" MouseEnter ="MouseEnterToolsHintsArea" MouseLeave ="MouseLeaveArea" Click ="ToolsSpellingHints_Click"/>
 			</MenuItem>
 		</Menu>
-		
+		<!-- Put Toolbar under the Menu -->
+		<ToolBar DockPanel.Dock ="Top" >
+			<Button Content ="Exit" MouseEnter ="MouseEnterExitArea"
+          MouseLeave ="MouseLeaveArea" Click ="FileExit_Click"/>
+			<Separator/>
+			<Button Content ="Check" MouseEnter ="MouseEnterToolsHintsArea"
+          MouseLeave ="MouseLeaveArea" Click ="ToolsSpellingHints_Click"
+          Cursor="Help" />
+		</ToolBar>
 	</DockPanel>
 </Window>
