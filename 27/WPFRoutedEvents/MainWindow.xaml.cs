@@ -17,6 +17,8 @@ using System.Windows.Shapes;
 
 //c Add codes for bubbling events, by using button, outter ellipse, inner ellipse.
 
+//c Add code to stop routed bubbling event from MouseDown event of outerEllipse, so that I can only see title change, not click event for button.
+
 namespace WPFRoutedEvents
 {
     /// <summary>
@@ -35,10 +37,14 @@ namespace WPFRoutedEvents
             MessageBox.Show("Clicked the button");
         }
 
+        //Click outter one -> Event fired and change title -> Event bubbled up to Button element's Click event 
         public void outerEllipse_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Change title of window.
             this.Title = "You clicked the outer ellipse!";
+
+            // Stop bubbling!
+            e.Handled = true;
         }
     }
 }
