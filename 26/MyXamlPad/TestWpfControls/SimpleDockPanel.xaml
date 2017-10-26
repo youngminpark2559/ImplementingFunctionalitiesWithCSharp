@@ -1,0 +1,23 @@
+﻿<!-- c Add a SimpleDockPanel.xaml for testing DockPanel with examining position of contents. -->
+
+<!-- DockPanel is used as a container which contains panels by grouping related ones. -->
+<!-- Arrangement of elements is not changed as I resize the window by DockPanel.Dock property value. -->
+<!-- Button subelement is the last child of DockPanel container and by LastChildFill="True", Button control takes all remaining space of DockPanel container. -->
+
+
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Fun with Panels!" Height="186" Width="501">
+
+	<DockPanel LastChildFill ="True">
+		<!-- Dock items to the panel -->
+		<Label DockPanel.Dock ="Top" Name="lblInstruction"
+           FontSize="15" Content="Enter Car Information"/>
+		<Label DockPanel.Dock ="Left" Name="lblMake" Content="Make"/>
+		<Label DockPanel.Dock ="Right" Name="lblColor" Content="Color"/>
+		<Label DockPanel.Dock ="Bottom" Name="lblPetName" Content="Pet Name"/>
+		<Button Name="btnOK" Content="OK"/>
+	</DockPanel>
+
+</Window>
