@@ -6,12 +6,26 @@
         xmlns:local="clr-namespace:MyWordPad"
         mc:Ignorable="d"
         Title="My Spell Checker" Height="350" Width="525">
+
+	<!-- This will inform the Window which handlers to call,
+       when testing for the Open and Save commands. -->
+	<Window.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Open"
+                    Executed="OpenCmdExecuted"
+                    CanExecute="OpenCmdCanExecute"/>
+		<CommandBinding Command="ApplicationCommands.Save"
+                    Executed="SaveCmdExecuted"
+                    CanExecute="SaveCmdCanExecute"/>
+	</Window.CommandBindings>
+
 	<!-- This panel establishes the content for the window -->
 	<DockPanel>
 		
 		<!-- Dock menu system on the top -->
 		<Menu DockPanel.Dock ="Top" HorizontalAlignment="Left" Background="White" BorderBrush ="Black">
 			<MenuItem Header="_File">
+				<MenuItem Command ="ApplicationCommands.Open"/>
+				<MenuItem Command ="ApplicationCommands.Save"/>
 				<Separator/>
 				<MenuItem Header ="_Exit" MouseEnter ="MouseEnterExitArea"
               MouseLeave ="MouseLeaveArea" Click ="FileExit_Click"/>

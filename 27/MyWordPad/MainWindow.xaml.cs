@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,6 +102,43 @@ namespace MyWordPad
         {
             MessageBox.Show("Look, it is not that difficult. Just type something!",
                             "Help!");
+        }
+
+        private void OpenCmdCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void SaveCmdCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void OpenCmdExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            // Create an open file dialog box and only show XAML files.
+            var openDlg = new OpenFileDialog { Filter = "Text Files |*.txt" };
+
+            // Did they click on the OK button?
+            if (true == openDlg.ShowDialog())
+            {
+                // Load all text of selected file.
+                string dataFromFile = File.ReadAllText(openDlg.FileName);
+                // Show string in TextBox.
+                txtData.Text = dataFromFile;
+            }
+        }
+
+        private void SaveCmdExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var saveDlg = new SaveFileDialog { Filter = "Text Files |*.txt" };
+
+            // Did they click on the OK button?
+            if (true == saveDlg.ShowDialog())
+            {
+                // Save data in the TextBox to the named file.
+                File.WriteAllText(saveDlg.FileName, txtData.Text);
+            }
         }
     }
 }
