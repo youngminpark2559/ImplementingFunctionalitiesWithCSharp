@@ -27,6 +27,8 @@ using System.Windows.Shapes;
 
 //c Add codes implementing Spell checking logic in xaml.cs file.
 
+//c Add new menu item by using functonality called intrinsic command object.
+
 namespace MyWordPad
 {
     /// <summary>
