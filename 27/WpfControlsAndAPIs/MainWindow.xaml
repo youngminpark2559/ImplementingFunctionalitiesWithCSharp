@@ -6,10 +6,26 @@
         xmlns:local="clr-namespace:WpfControlsAndAPIs"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+	<Grid>
 		<TabControl x:Name="myTabControl" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="489">
 			<TabItem Header="Ink API">
-				<Grid Background="#FFE5E5E5"/>
+				<StackPanel Background="#FFE5E5E5">
+					<ToolBar x:Name="inkToolbar" HorizontalAlignment="Left" Width="479" Height="60">
+						<Border Margin="0,2,0,3" Width="300">
+							<Grid>
+								<RadioButton x:Name="inkRadio" Content="Ink Mode!" Margin="0,0,200,0" Click="RadioButtonClicked"/>
+								<RadioButton x:Name="selectRadio" Content="Erase Mode!" Margin="100,0" Click="RadioButtonClicked"/>
+								<RadioButton x:Name="eraseRadio" Content="Select Mode!" Margin="200,0,0,0" Click="RadioButtonClicked"/>
+							</Grid>
+						</Border>
+						<Separator/>
+						<ComboBox x:Name="comboColors" Width="100" SelectionChanged="ColorChanged">
+							<ComboBoxItem Content="Red"/>
+							<ComboBoxItem Content="Green"/>
+							<ComboBoxItem Content="Blue"/>
+						</ComboBox>
+					</ToolBar>
+				</StackPanel>
 			</TabItem>
 			<TabItem Header="Documents">
 				<Grid Background="#FFE5E5E5"/>

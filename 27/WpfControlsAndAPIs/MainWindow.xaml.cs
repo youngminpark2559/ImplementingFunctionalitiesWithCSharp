@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 
 //c Add codes to implement TabControl by using <TabControl>, <TabItem> etc.
 
+//c Add event handler method RadioButtonClicked(), ColorChanged() for event Click, SelectionChanged of RadioButton, ComboBox.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
@@ -24,7 +26,23 @@ namespace WpfControlsAndAPIs
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            // Insert code required on object creation below this point.
         }
+
+
+
+        private void RadioButtonClicked(object sender, RoutedEventArgs e)
+        {
+            // TODO: Add event handler implementation here.
+        }
+
+
+        private void ColorChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO: Add event handler implementation here.
+        }
+
     }
 }
