@@ -22,6 +22,9 @@ using System.Windows.Shapes;
 //c Add a StatusBar in xaml file.
 
 //c Add codes for spell check UI in xaml file by using Grid, GridSplitter, Expander, TextBox..
+
+//c Add codes implementing MouseEnter, MouseLeave event's event handlers in xaml.cs file.
+
 namespace MyWordPad
 {
     /// <summary>
@@ -39,17 +42,37 @@ namespace MyWordPad
             // Close this window.
             this.Close();
         }
-        protected void ToolsSpellingHints_Click(object sender, RoutedEventArgs args)
-        {
-        }
         protected void MouseEnterExitArea(object sender, RoutedEventArgs args)
         {
+            statBarText.Text = "Exit the Application";
         }
         protected void MouseEnterToolsHintsArea(object sender, RoutedEventArgs args)
         {
+            statBarText.Text = "Show Spelling Suggestions";
         }
         protected void MouseLeaveArea(object sender, RoutedEventArgs args)
         {
+            statBarText.Text = "Ready";
+        }
+
+        protected void ToolsSpellingHints_Click(object sender, RoutedEventArgs args)
+        {
+            string spellingHints = string.Empty;
+
+            // Try to get a spelling error at the current caret location.
+            SpellingError error = txtData.GetSpellingError(txtData.CaretIndex);
+            if (error != null)
+            {
+                // Build a string of spelling suggestions.
+                foreach (string s in error.Suggestions)
+                {
+                    spellingHints += $"{s}\n";
+                }
+
+                // Show suggestions and expand the expander.
+                lblSpellingHints.Content = spellingHints;
+                expanderSpelling.IsExpanded = true;
+            }
         }
     }
 }
