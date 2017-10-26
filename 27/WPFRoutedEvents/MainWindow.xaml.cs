@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 
 //c Add WPF App project WPFRoutedEvents.
 
+//c Add codes for bubbling events, by using button, outter ellipse, inner ellipse.
+
 namespace WPFRoutedEvents
 {
     /// <summary>
