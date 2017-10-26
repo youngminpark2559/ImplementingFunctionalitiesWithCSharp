@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
-    </Grid>
+		<TabControl x:Name="myTabControl" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="489">
+			<TabItem Header="Ink API">
+				<Grid Background="#FFE5E5E5"/>
+			</TabItem>
+			<TabItem Header="Documents">
+				<Grid Background="#FFE5E5E5"/>
+			</TabItem>
+			<TabItem Header="Data Binding" HorizontalAlignment="Left" Height="20"
+             VerticalAlignment="Top" Width="95" Margin="-2,-2,-36,0">
+				<Grid Background="#FFE5E5E5"/>
+			</TabItem>
+			<TabItem Header="DataGrid" HorizontalAlignment="Left" Height="20"
+             VerticalAlignment="Top" Width="74" Margin="-2,-2,-15,0">
+				<Grid Background="#FFE5E5E5"/>
+			</TabItem>
+		</TabControl>
+
+	</Grid>
 </Window>

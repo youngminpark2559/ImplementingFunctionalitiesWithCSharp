@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+//c Add codes to implement TabControl by using <TabControl>, <TabItem> etc.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
