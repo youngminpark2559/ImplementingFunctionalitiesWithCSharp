@@ -27,7 +27,7 @@ using System.Windows.Shapes;
 
 //c Add codes implementing Spell checking logic in xaml.cs file.
 
-//c Add new menu item by using functonality called intrinsic command object.
+//c Add new menu item by using functonality called intrinsic command object, this time, it implements Copy, Cut, Paste functionalities which can be used by Edit menu, key functionality like Ctrl+C, funtionality by context menu.
 
 namespace MyWordPad
 {
