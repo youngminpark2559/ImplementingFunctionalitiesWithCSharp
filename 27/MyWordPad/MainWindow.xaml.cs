@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 
 //c Add a StatusBar in xaml file.
 
+//c Add codes for spell check UI in xaml file by using Grid, GridSplitter, Expander, TextBox..
 namespace MyWordPad
 {
     /// <summary>
