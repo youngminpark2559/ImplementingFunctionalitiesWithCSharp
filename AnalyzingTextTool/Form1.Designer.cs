@@ -87,9 +87,10 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 401);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(439, 12);
+            this.label1.Size = new System.Drawing.Size(507, 12);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Put the text URL(i.e. http://www.http://www.gutenberg.org/files/98/98-8.txt)";
+            this.label1.Text = "Put the URL of a text source(i.e. http://www.http://www.gutenberg.org/files/98/98" +
+    "-8.txt)";
             // 
             // label2
             // 
