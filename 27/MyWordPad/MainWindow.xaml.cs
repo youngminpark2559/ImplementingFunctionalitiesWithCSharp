@@ -29,6 +29,7 @@ using System.Windows.Shapes;
 
 //c Add new menu item by using functonality called intrinsic command object, this time, it implements Copy, Cut, Paste functionalities which can be used by Edit menu, key functionality like Ctrl+C, funtionality by context menu.
 
+//c Add codes connnecting commands to action SetF1CommandBinding() by using CommandBinding object.
 namespace MyWordPad
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace MyWordPad
         public MainWindow()
         {
             InitializeComponent();
+            SetF1CommandBinding();
         }
 
         protected void FileExit_Click(object sender, RoutedEventArgs args)
@@ -77,6 +79,27 @@ namespace MyWordPad
                 lblSpellingHints.Content = spellingHints;
                 expanderSpelling.IsExpanded = true;
             }
+        }
+
+        private void SetF1CommandBinding()
+        {
+            CommandBinding helpBinding = new CommandBinding(ApplicationCommands.Help);
+            helpBinding.CanExecute += CanHelpExecute;
+            helpBinding.Executed += HelpExecuted;
+            CommandBindings.Add(helpBinding);
+        }
+
+        private void CanHelpExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            // Here, you can set CanExecute to false if you want to prevent the
+            // command from executing.
+            e.CanExecute = true;
+        }
+
+        private void HelpExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Look, it is not that difficult. Just type something!",
+                            "Help!");
         }
     }
 }
