@@ -32,6 +32,7 @@ using System.Windows.Shapes;
 //c Add new menu item by using functonality called intrinsic command object, this time, it implements Copy, Cut, Paste functionalities which can be used by Edit menu, key functionality like Ctrl+C, funtionality by context menu.
 
 //c Add codes connnecting commands to action SetF1CommandBinding() by using CommandBinding object.
+
 namespace MyWordPad
 {
     /// <summary>
