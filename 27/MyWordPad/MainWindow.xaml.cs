@@ -18,6 +18,9 @@ using System.Windows.Shapes;
 //c Add a menu system by Menu, MenuItem element inside of DockPanel in xaml file, with setting some events.
 
 //c Add a ToolBar system which can be alternatively used for a menu system.
+
+//c Add a StatusBar in xaml file.
+
 namespace MyWordPad
 {
     /// <summary>
