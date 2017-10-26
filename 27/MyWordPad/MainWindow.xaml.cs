@@ -25,6 +25,8 @@ using System.Windows.Shapes;
 
 //c Add codes implementing MouseEnter, MouseLeave event's event handlers in xaml.cs file.
 
+//c Add codes implementing Spell checking logic in xaml.cs file.
+
 namespace MyWordPad
 {
     /// <summary>
