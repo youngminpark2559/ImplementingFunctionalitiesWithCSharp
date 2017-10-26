@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyWordPad"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="My Spell Checker" Height="350" Width="525">
+	<!-- This panel establishes the content for the window -->
+	<DockPanel>
+		<!-- Dock menu system on the top -->
+		<Menu DockPanel.Dock ="Top" HorizontalAlignment="Left" Background="White" BorderBrush ="Black">
+			<MenuItem Header="_File">
+				<Separator/>
+				<MenuItem Header ="_Exit" MouseEnter ="MouseEnterExitArea"
+              MouseLeave ="MouseLeaveArea" Click ="FileExit_Click"/>
+			</MenuItem>
+			<MenuItem Header="_Tools">
+				<MenuItem Header ="_Spelling Hints" MouseEnter ="MouseEnterToolsHintsArea" MouseLeave ="MouseLeaveArea" Click ="ToolsSpellingHints_Click"/>
+			</MenuItem>
+		</Menu>
+		
+	</DockPanel>
 </Window>

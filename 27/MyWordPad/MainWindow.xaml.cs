@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 //c Add a WPF project MyWordPad for testing nested panels to build a window's frame.
 
+//c Add a menu system by Menu, MenuItem element inside of DockPanel in xaml file, with setting some events.
 namespace MyWordPad
 {
     /// <summary>
@@ -25,6 +26,24 @@ namespace MyWordPad
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        protected void FileExit_Click(object sender, RoutedEventArgs args)
+        {
+            // Close this window.
+            this.Close();
+        }
+        protected void ToolsSpellingHints_Click(object sender, RoutedEventArgs args)
+        {
+        }
+        protected void MouseEnterExitArea(object sender, RoutedEventArgs args)
+        {
+        }
+        protected void MouseEnterToolsHintsArea(object sender, RoutedEventArgs args)
+        {
+        }
+        protected void MouseLeaveArea(object sender, RoutedEventArgs args)
+        {
         }
     }
 }
