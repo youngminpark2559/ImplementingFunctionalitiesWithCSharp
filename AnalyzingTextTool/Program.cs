@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//c Update comment3
+
 namespace AnalyzingTextTool
 {
     static class Program
