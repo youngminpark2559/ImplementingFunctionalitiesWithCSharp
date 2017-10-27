@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfControlsAndAPIs"
         mc:Ignorable="d"
-        Title="MainWindow" Height="369" Width="525">
+        Title="MainWindow" Height="400" Width="555">
 	<Grid>
-		<TabControl x:Name="myTabControl" HorizontalAlignment="Left" Height="320" Margin="10,10,0,0" VerticalAlignment="Top" Width="500">
+		<TabControl x:Name="myTabControl" HorizontalAlignment="Left" Height="320" Margin="10,10,0,0" VerticalAlignment="Top" Width="530">
 			<TabItem Header="Ink API">
 				<StackPanel Background="#FFE5E5E5">
 					
-					<ToolBar x:Name="inkToolbar" HorizontalAlignment="Left" Width="479" Height="60">
+					<ToolBar x:Name="inkToolbar" HorizontalAlignment="Left" Width="505" Height="60">
 						<Border Margin="0,2,0,3" Width="300">
 							<Grid>
 								<RadioButton x:Name="inkRadio" Content="Ink Mode!" Margin="0,0,200,0" Click="RadioButtonClicked"/>
@@ -19,14 +19,37 @@
 								<RadioButton x:Name="eraseRadio" Content="Select Mode!" Margin="200,0,0,0" Click="RadioButtonClicked"/>
 								
 							</Grid>
+
+
 							
+
 						</Border>
+						
 						<Separator/>
-						<ComboBox x:Name="comboColors" Width="100" SelectionChanged="ColorChanged">
-							<ComboBoxItem Content="Red"/>
-							<ComboBoxItem Content="Green"/>
-							<ComboBoxItem Content="Blue"/>
+
+
+						<ComboBox x:Name="comboColors" Width="200" SelectionChanged="ColorChanged">
+							<StackPanel Orientation ="Horizontal" Tag="Red">
+								<Ellipse Fill ="Red" Height ="50" Width ="50"/>
+								<Label FontSize ="20" HorizontalAlignment="Center"
+           VerticalAlignment="Center" Content="Red"/>
+							</StackPanel>
+
+							<StackPanel Orientation ="Horizontal" Tag="Green">
+								<Ellipse Fill ="Green" Height ="50" Width ="50"/>
+								<Label FontSize ="20" HorizontalAlignment="Center"
+           VerticalAlignment="Center" Content="Green"/>
+							</StackPanel>
+
+							<StackPanel Orientation ="Horizontal" Tag="Blue">
+								<Ellipse Fill ="Blue" Height ="50" Width ="50"/>
+								<Label FontSize ="20" HorizontalAlignment="Center"
+           VerticalAlignment="Center" Content="Blue"/>
+							</StackPanel>
 						</ComboBox>
+
+
+
 					</ToolBar>
 					<InkCanvas Name="myInkCanvas" Background="DarkSeaGreen"/>
 				</StackPanel>

@@ -25,6 +25,8 @@ using System.Windows.Shapes;
 
 //c Update ColorChanged() event handler method which sets the drawing pen color a color what user put in ComboBox.
 
+//c Update ComboBox in xaml, to make selection(RGB) visually good with showing colored ellipses, and update ColorChanged() event handler method to assign value into colorToUse by Tag type.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
@@ -72,12 +74,27 @@ namespace WpfControlsAndAPIs
 
 
 
+        ////This method sets the drawing pen color a color what user put in ComboBox.
+        //private void ColorChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    // Get the selected value in the combo box.
+        //    string colorToUse =
+        //      (this.comboColors.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+        //    // Change the color used to render the strokes.
+        //    this.myInkCanvas.DefaultDrawingAttributes.Color =
+        //      (Color)ColorConverter.ConvertFromString(colorToUse);
+        //}
+
+
+
+
         //This method sets the drawing pen color a color what user put in ComboBox.
         private void ColorChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Get the selected value in the combo box.
-            string colorToUse =
-              (this.comboColors.SelectedItem as ComboBoxItem)?.Content.ToString();
+            // Get the Tag of the selected StackPanel.
+            string colorToUse = (this.comboColors.SelectedItem
+                as StackPanel).Tag.ToString();
 
             // Change the color used to render the strokes.
             this.myInkCanvas.DefaultDrawingAttributes.Color =
