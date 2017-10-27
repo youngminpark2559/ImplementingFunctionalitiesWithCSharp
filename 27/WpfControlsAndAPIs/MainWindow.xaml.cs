@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -39,9 +40,12 @@ using System.Windows.Shapes;
 
 //c Add XML namespace with tag prefix "a" (xmlns:a="clr-namespace:System.Windows.Annotations;assembly=PresentationFramework"). This namespace enables me to use command objects which are used with Documents API, those command objects are packaged in System.Windows.Annotations namespace of PresentationFramework.dll.
 
-//c Update <Button> by adding Command attribute containing AnnotationService as a value.
+//c Update <Button> by adding Command attribute containing AnnotationService as a value. This time, I use sticky note, delete sticky note, highlight functionalities of AnnotationService.
 
 //c Add EnableAnnotations() to use AnnotationService
+
+//c Add btnSaveDoc, btnLoadDoc in xaml, and add event handler for each button click event, by using lambda expression. They save myDocumentReader.Document content to documentData.xaml and read it from file and bind to the myDocumentReader.Document.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
@@ -63,6 +67,36 @@ namespace WpfControlsAndAPIs
             this.comboColors.SelectedIndex = 0;
 
             PopulateDocument();
+            EnableAnnotations();
+
+
+            // Rig up some Click handlers for the save/load of the flow doc.
+            btnSaveDoc.Click += (o, s) =>
+            {
+                using (FileStream fStream = File.Open("documentData.xaml", FileMode.Create))
+                {
+                    XamlWriter.Save(this.myDocumentReader.Document, fStream);
+                }
+            };
+
+            btnLoadDoc.Click += (o, s) =>
+            {
+                using (FileStream fStream = File.Open("documentData.xaml", FileMode.Open))
+                {
+                    try
+                    {
+                        FlowDocument doc = XamlReader.Load(fStream) as FlowDocument;
+                        this.myDocumentReader.Document = doc;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error Loading Doc!");
+                    }
+                }
+            };
+
+
+
         }
 
 
