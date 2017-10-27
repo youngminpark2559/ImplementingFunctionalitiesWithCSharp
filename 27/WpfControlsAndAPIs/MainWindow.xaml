@@ -84,13 +84,22 @@
 
 
 
-			<TabItem Header="Data Binding" HorizontalAlignment="Left" Height="20"
-             VerticalAlignment="Top" Width="95" Margin="-2,-2,-36,0">
-				<Grid Background="#FFE5E5E5"/>
+			<TabItem x:Name="tabDataBinding" Header="Data Binding">
+				<StackPanel Width="250">
+					<Label Content="Move the scroll bar to see the current value"/>
+
+					<!-- The scrollbar's value is the source of this data bind. -->
+					<ScrollBar x:Name="mySB" Orientation="Horizontal" Height="30"
+           Minimum = "1" Maximum = "100" LargeChange="1" SmallChange="1"/>
+
+					<!-- The label's content will be bound to the scroll bar! -->
+					<Label x:Name="labelSBThumb" Height="30" BorderBrush="Blue"
+           BorderThickness="2" Content = "0"/>
+				</StackPanel>
 			</TabItem>
-			
-			
-			
+
+
+
 			<TabItem Header="DataGrid" HorizontalAlignment="Left" Height="20"
              VerticalAlignment="Top" Width="74" Margin="-2,-2,-15,0">
 				<Grid Background="#FFE5E5E5"/>

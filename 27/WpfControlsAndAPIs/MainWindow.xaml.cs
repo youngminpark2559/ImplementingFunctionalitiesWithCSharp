@@ -46,6 +46,9 @@ using System.Windows.Shapes;
 
 //c Add btnSaveDoc, btnLoadDoc in xaml, and add event handler for each button click event, by using lambda expression. They save myDocumentReader.Document content to documentData.xaml and read it from file and bind to the myDocumentReader.Document.
 
+
+//c Add configuration code for 3rd tab(Data Binding) layout in xaml file.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
