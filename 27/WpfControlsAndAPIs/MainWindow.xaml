@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfControlsAndAPIs"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="555">
+        Title="MainWindow" Height="439" Width="555">
 	<Grid>
 		<TabControl x:Name="myTabControl" HorizontalAlignment="Left" Height="320" Margin="10,10,0,0" VerticalAlignment="Top" Width="530">
 			<TabItem Header="Ink API">
@@ -47,6 +47,7 @@
            VerticalAlignment="Center" Content="Blue"/>
 							</StackPanel>
 						</ComboBox>
+						
 
 
 
@@ -66,6 +67,9 @@
 				<Grid Background="#FFE5E5E5"/>
 			</TabItem>
 		</TabControl>
+		<Button Content="Save" Name="btnSave" Click="SaveData" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Width="75"/>
+		<Button Content="Load" Name="btnLoad" Click="LoadData" HorizontalAlignment="Left" Margin="123,365,0,0" VerticalAlignment="Top" Width="75"/>
+		<Button Content="Clear" Name="btnClear" Click="Clear" HorizontalAlignment="Left" Margin="241,365,0,0" VerticalAlignment="Top" Width="75"/>
 
 	</Grid>
 </Window>

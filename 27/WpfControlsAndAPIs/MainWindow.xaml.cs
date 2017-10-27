@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -26,6 +28,8 @@ using System.Windows.Shapes;
 //c Update ColorChanged() event handler method which sets the drawing pen color a color what user put in ComboBox.
 
 //c Update ComboBox in xaml, to make selection(RGB) visually good with showing colored ellipses, and update ColorChanged() event handler method to assign value into colorToUse by Tag type.
+
+//c Add funtionality for saving, loading, clearing the drawing.
 
 namespace WpfControlsAndAPIs
 {
@@ -99,6 +103,34 @@ namespace WpfControlsAndAPIs
             // Change the color used to render the strokes.
             this.myInkCanvas.DefaultDrawingAttributes.Color =
               (Color)ColorConverter.ConvertFromString(colorToUse);
+        }
+
+
+        private void SaveData(object sender, RoutedEventArgs e)
+        {
+            // Save all data on the InkCanvas to a local file.
+            using (FileStream fs = new FileStream("StrokeData.bin", FileMode.Create))
+            {
+                this.myInkCanvas.Strokes.Save(fs);
+                fs.Close();
+            }
+        }
+
+        private void LoadData(object sender, RoutedEventArgs e)
+        {
+            // Fill StrokeCollection from file.
+            using (FileStream fs = new FileStream("StrokeData.bin",
+              FileMode.Open, FileAccess.Read))
+            {
+                StrokeCollection strokes = new StrokeCollection(fs);
+                this.myInkCanvas.Strokes = strokes;
+            }
+        }
+
+        private void Clear(object sender, RoutedEventArgs e)
+        {
+            // Clear all strokes.
+            this.myInkCanvas.Strokes.Clear();
         }
     }
 }
