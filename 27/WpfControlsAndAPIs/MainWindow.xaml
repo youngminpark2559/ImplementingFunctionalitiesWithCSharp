@@ -57,9 +57,9 @@
          Height="20">
 				<StackPanel>
 					<ToolBar>
-						<Button BorderBrush="Green" Content="Add Sticky Note"/>
-						<Button BorderBrush="Green" Content="Delete Sticky Notes"/>
-						<Button BorderBrush="Green" Content="Highlight Text"/>
+						<Button BorderBrush="Green" Content="Add Sticky Note" Command="a:AnnotationService.CreateTextStickyNoteCommand"/>/>
+						<Button BorderBrush="Green" Content="Delete Sticky Notes" Command="a:AnnotationService.DeleteStickyNotesCommand"/>/>
+						<Button BorderBrush="Green" Content="Highlight Text" Command="a:AnnotationService.CreateHighlightCommand"/>/>
 					</ToolBar>
 					<FlowDocumentReader x:Name="myDocumentReader" Height="269.4">
 						<FlowDocument>

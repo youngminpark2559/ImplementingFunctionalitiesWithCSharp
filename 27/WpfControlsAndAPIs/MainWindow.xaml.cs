@@ -37,6 +37,8 @@ using System.Windows.Shapes;
 
 //c Add XML namespace with tag prefix "a" (xmlns:a="clr-namespace:System.Windows.Annotations;assembly=PresentationFramework"). This namespace enables me to use command objects which are used with Documents API, those command objects are packaged in System.Windows.Annotations namespace of PresentationFramework.dll.
 
+//c Update <Button> by adding Command attribute containing AnnotationService as a value.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
