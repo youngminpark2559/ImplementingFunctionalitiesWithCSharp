@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoLotDAL.Repos;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,6 +52,8 @@ using System.Windows.Shapes;
 //c Add codes to test Data binding. I create a scrollbar and a label. As I move the scrollbar which has minimum value 1 at start point, maximum value 100 at end point, increased or decreased value dynamically binds to the lable in the double data type.
 
 //c Add MyDoubleConverter class which implements IValueConverter, which converts the number around scrollbar and label.
+
+//c Update 4th DataGrid tap to show data from database which is defined in AutoLotDAL.dll in xaml file. And add ConfigureGrid() to retrieve data from database by using LINQ.
 
 namespace WpfControlsAndAPIs
 {
@@ -121,8 +124,9 @@ namespace WpfControlsAndAPIs
                 }
             };
 
+            SetBindings();
 
-
+            ConfigureGrid();
         }
 
 
@@ -261,5 +265,31 @@ namespace WpfControlsAndAPIs
             // Enable the annotation services.
             anoService.Enable(store);
         }
+
+        private void SetBindings()
+        {
+            // Create a Binding object.
+            Binding b = new Binding();
+
+            // Register the converter, source, and path.
+            b.Converter = new MyDoubleConverter();
+            b.Source = this.mySB;
+            b.Path = new PropertyPath("Value");
+
+            // Call the SetBinding method on the Label.
+            this.labelSBThumb.SetBinding(Label.ContentProperty, b);
+        }
+
+        private void ConfigureGrid()
+        {
+            using (var repo = new InventoryRepo())
+            {
+                // Build a LINQ query that gets back some data from the Inventory table.
+                gridInventory.ItemsSource =
+                  repo.GetAll().Select(x => new { x.CarId, x.Make, x.Color, x.PetName });
+            }
+        }
+
+        
     }
 }
