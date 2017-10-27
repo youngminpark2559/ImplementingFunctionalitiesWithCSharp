@@ -67,8 +67,8 @@
 									Here are some fun facts about the WPF Documents API!
 								</Paragraph>
 							</Section>
-							<List/>
-							<Paragraph/>
+							<List x:Name="listOfFunFacts"/>
+							<Paragraph x:Name="paraBodyText"/>
 						</FlowDocument>
 					</FlowDocumentReader>
 
