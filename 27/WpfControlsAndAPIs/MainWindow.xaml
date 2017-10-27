@@ -89,12 +89,10 @@
 					<Label Content="Move the scroll bar to see the current value"/>
 
 					<!-- The scrollbar's value is the source of this data bind. -->
-					<ScrollBar x:Name="mySB" Orientation="Horizontal" Height="30"
-           Minimum = "1" Maximum = "100" LargeChange="1" SmallChange="1"/>
+					<ScrollBar x:Name="mySB" Orientation="Horizontal" Height="30" Minimum = "1" Maximum = "100" LargeChange="1" SmallChange="1"/>
 
 					<!-- The label's content will be bound to the scroll bar! -->
-					<Label x:Name="labelSBThumb" Height="30" BorderBrush="Blue"
-           BorderThickness="2" Content = "0"/>
+					<Label x:Name="labelSBThumb" Height="30" BorderBrush="Blue" BorderThickness="2" Content = "{Binding Value, ElementName=mySB}"/>
 				</StackPanel>
 			</TabItem>
 

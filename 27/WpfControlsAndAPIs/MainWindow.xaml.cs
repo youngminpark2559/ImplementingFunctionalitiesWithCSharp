@@ -46,8 +46,9 @@ using System.Windows.Shapes;
 
 //c Add btnSaveDoc, btnLoadDoc in xaml, and add event handler for each button click event, by using lambda expression. They save myDocumentReader.Document content to documentData.xaml and read it from file and bind to the myDocumentReader.Document.
 
-
 //c Add configuration code for 3rd tab(Data Binding) layout in xaml file.
+
+//c Add codes to test Data binding. I create a scrollbar and a label. As I move the scrollbar which has minimum value 1 at start point, maximum value 100 at end point, increased or decreased value dynamically binds to the lable in the double data type.
 
 namespace WpfControlsAndAPIs
 {
