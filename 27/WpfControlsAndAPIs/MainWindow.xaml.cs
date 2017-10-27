@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 //c Add event handler method RadioButtonClicked(), ColorChanged() for event Click, SelectionChanged of RadioButton, ComboBox.
 
-//c Add InkCanvas in ToolBox
+//c Add InkCanvas in ToolBox.
 
 //c Update code for RadioButtonClicked() event handler method which plays roles for InkMode, EraseMode, SelectMode, based on client's selection on RadioButton.
 
