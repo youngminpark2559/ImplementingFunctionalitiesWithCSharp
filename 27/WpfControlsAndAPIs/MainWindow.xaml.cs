@@ -35,6 +35,8 @@ using System.Windows.Shapes;
 
 //c Add <List>, <Paragraph> in <FlowDocument> in xaml to implement UI , and add PopulateDocument() to add data.
 
+//c Add XML namespace with tag prefix "a" (xmlns:a="clr-namespace:System.Windows.Annotations;assembly=PresentationFramework"). This namespace enables me to use command objects which are used with Documents API, those command objects are packaged in System.Windows.Annotations namespace of PresentationFramework.dll.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
