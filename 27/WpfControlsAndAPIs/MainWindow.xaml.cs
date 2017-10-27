@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Annotations;
+using System.Windows.Annotations.Storage;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -39,6 +41,7 @@ using System.Windows.Shapes;
 
 //c Update <Button> by adding Command attribute containing AnnotationService as a value.
 
+//c Add EnableAnnotations() to use AnnotationService
 namespace WpfControlsAndAPIs
 {
     /// <summary>
@@ -180,7 +183,23 @@ namespace WpfControlsAndAPIs
         }
 
 
+        
+        private void EnableAnnotations()
+        {
+            // Create the AnnotationService object that works
+            // with our FlowDocumentReader.
+            AnnotationService anoService = new AnnotationService(myDocumentReader);
 
+            // Create a MemoryStream that will hold the annotations.
+            MemoryStream anoStream = new MemoryStream();
 
+            // Now, create an XML-based store based on the MemoryStream.
+            // You could use this object to programmatically add, delete,
+            // or find annotations.
+            AnnotationStore store = new XmlStreamStore(anoStream);
+
+            // Enable the annotation services.
+            anoService.Enable(store);
+        }
     }
 }
