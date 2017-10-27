@@ -23,6 +23,7 @@ using System.Windows.Shapes;
 
 //c Update MainWindow() to set default for myInkCanvas.EditingMode, inkRadio, comboColors.SelectedIndex.
 
+//c Update ColorChanged() event handler method which sets the drawing pen color a color what user put in ComboBox.
 
 namespace WpfControlsAndAPIs
 {
@@ -70,12 +71,17 @@ namespace WpfControlsAndAPIs
         }
 
 
+
+        //This method sets the drawing pen color a color what user put in ComboBox.
         private void ColorChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: Add event handler implementation here.
+            // Get the selected value in the combo box.
+            string colorToUse =
+              (this.comboColors.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            // Change the color used to render the strokes.
+            this.myInkCanvas.DefaultDrawingAttributes.Color =
+              (Color)ColorConverter.ConvertFromString(colorToUse);
         }
-
-
-
     }
 }
