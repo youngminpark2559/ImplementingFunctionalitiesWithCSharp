@@ -50,8 +50,30 @@ using System.Windows.Shapes;
 
 //c Add codes to test Data binding. I create a scrollbar and a label. As I move the scrollbar which has minimum value 1 at start point, maximum value 100 at end point, increased or decreased value dynamically binds to the lable in the double data type.
 
+//c Add MyDoubleConverter class which implements IValueConverter, which converts the number around scrollbar and label.
+
 namespace WpfControlsAndAPIs
 {
+
+
+    class MyDoubleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter,
+                              System.Globalization.CultureInfo culture)
+        {
+            // Convert the double to an int.
+            double v = (double)value;
+            return (int)v;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter,
+                                  System.Globalization.CultureInfo culture)
+        {
+            // You won't worry about "two-way" bindings here, so just return the value.
+            return value;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -221,7 +243,7 @@ namespace WpfControlsAndAPIs
         }
 
 
-        
+
         private void EnableAnnotations()
         {
             // Create the AnnotationService object that works
