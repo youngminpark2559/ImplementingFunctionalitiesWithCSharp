@@ -21,6 +21,9 @@ using System.Windows.Shapes;
 
 //c Update code for RadioButtonClicked() event handler method which plays roles for InkMode, EraseMode, SelectMode, based on client's selection on RadioButton.
 
+//c Update MainWindow() to set default for myInkCanvas.EditingMode, inkRadio, comboColors.SelectedIndex.
+
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
@@ -33,6 +36,13 @@ namespace WpfControlsAndAPIs
             this.InitializeComponent();
 
             // Insert code required on object creation below this point.
+
+            //Set Ink mode default in myInkCanvas.EditingMode
+            //and set inkRadio checked by default in RadioButton
+            //and set comboColors default to SelectedIndex=0.
+            this.myInkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+            this.inkRadio.IsChecked = true;
+            this.comboColors.SelectedIndex = 0;
         }
 
 
