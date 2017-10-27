@@ -17,6 +17,10 @@ using System.Windows.Shapes;
 
 //c Add event handler method RadioButtonClicked(), ColorChanged() for event Click, SelectionChanged of RadioButton, ComboBox.
 
+//c Add InkCanvas in ToolBox
+
+//c Update code for RadioButtonClicked() event handler method which plays roles for InkMode, EraseMode, SelectMode, based on client's selection on RadioButton.
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
@@ -32,10 +36,27 @@ namespace WpfControlsAndAPIs
         }
 
 
-
+        //This is for RadioButtons(InkMode, EraseMode, SelectMode).
         private void RadioButtonClicked(object sender, RoutedEventArgs e)
         {
-            // TODO: Add event handler implementation here.
+            // Based on which button sent the event, place the InkCanvas in a unique
+            // mode of operation.
+            switch ((sender as RadioButton)?.Content.ToString())
+            {
+                // These strings must be the same as the Content values for each
+                // RadioButton.
+                case "Ink Mode!":
+                    this.myInkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                    break;
+
+                case "Erase Mode!":
+                    this.myInkCanvas.EditingMode = InkCanvasEditingMode.EraseByStroke;
+                    break;
+
+                case "Select Mode!":
+                    this.myInkCanvas.EditingMode = InkCanvasEditingMode.Select;
+                    break;
+            }
         }
 
 
@@ -43,6 +64,8 @@ namespace WpfControlsAndAPIs
         {
             // TODO: Add event handler implementation here.
         }
+
+
 
     }
 }
