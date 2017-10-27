@@ -15,6 +15,7 @@ namespace TestSerializeInBinaryFormat
     {
         public bool hasTweeters;
         public bool hasSubWoofers;
+        [NonSerialized]
         public double[] stationPresets;
 
         [NonSerialized]
