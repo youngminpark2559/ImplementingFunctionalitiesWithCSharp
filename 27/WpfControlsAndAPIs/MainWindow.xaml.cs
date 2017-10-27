@@ -31,6 +31,8 @@ using System.Windows.Shapes;
 
 //c Add funtionality for saving, loading, clearing the drawing.
 
+//c Update funtionality for document editor which is in the 2nd TabItem by using FlowDocumentReader class and its lower members such as FlowDocument, Section, List, Paragraph..
+
 namespace WpfControlsAndAPIs
 {
     /// <summary>
