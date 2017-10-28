@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+//c Add PropertyChangedCallback(CurrentNumberChanged) which is invoked when property value of the dependency property changes, and add CurrentNumberChanged().
+
 namespace CustomDepPropApp
 {
     /// <summary>
@@ -30,7 +32,7 @@ namespace CustomDepPropApp
 
         // Using a DependencyProperty as the backing store for CurrentNumber.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CurrentNumberProperty =
-            DependencyProperty.Register("CurrentNumber", typeof(int), typeof(ShowNumberControl), new UIPropertyMetadata(100), new ValidateValueCallback(ValidateCurrentNumber));
+            DependencyProperty.Register("CurrentNumber", typeof(int), typeof(ShowNumberControl), new UIPropertyMetadata(100, new PropertyChangedCallback(CurrentNumberChanged)), new ValidateValueCallback(ValidateCurrentNumber));
 
 
 
@@ -57,6 +59,19 @@ namespace CustomDepPropApp
                 return true;
             else
                 return false;
+        }
+
+
+        private static void CurrentNumberChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs args)
+        {
+            // Cast the DependencyObject into ShowNumberControl.
+            ShowNumberControl c = (ShowNumberControl)depObj;
+
+            // Get the Label control in the ShowNumberControl.
+            Label theLabel = c.numberDisplay;
+
+            // Set the Label with the new value.
+            theLabel.Content = args.NewValue.ToString();
         }
     }
 }
