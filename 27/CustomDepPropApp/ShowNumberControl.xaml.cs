@@ -36,6 +36,11 @@ namespace CustomDepPropApp
 
 
 
+
+
+
+
+
         public ShowNumberControl()
         {
             InitializeComponent();
